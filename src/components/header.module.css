@@ -1,0 +1,31 @@
+.containerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoText {
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+}
+
+.navList {
+  display: inline-flex;
+  gap: 28px;
+}
+
+.navLink {
+  display: inline-block;
+  padding: 34px 0;
+}
+
+.authList {
+  display: inline-flex;
+}

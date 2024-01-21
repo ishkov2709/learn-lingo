@@ -5,12 +5,12 @@ import logo from "../../public/images/logo.svg";
 import style from "./header.module.css";
 import Link from "next/link";
 import { LuLogIn } from "react-icons/lu";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import ThemesSelector from "./themes-selector";
+import { themeSwitcher } from "@/utils/themeSwitcher";
 
 const Header = () => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
-  const dispatch = useAppDispatch();
 
   return (
     <header>
@@ -42,7 +42,10 @@ const Header = () => {
         <ul className={style.authList}>
           <li>
             <Link className={style.loginLink} href="/login">
-              <LuLogIn color="inherit" size={20} />
+              <LuLogIn
+                color={themeSwitcher(currentTheme).primaryColor}
+                size={20}
+              />
               Log in
             </Link>
           </li>

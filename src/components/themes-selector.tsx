@@ -1,7 +1,9 @@
 import React from "react";
 import chroma from "chroma-js";
-import { StylesConfig } from "react-select";
+import { GroupBase, StylesConfig } from "react-select";
 import dynamic from "next/dynamic";
+import { useAppDispatch } from "@/redux/hooks";
+import { setTheme } from "@/redux/themes/themesSlice";
 
 const Select = dynamic(
   () => import("react-select").then((mod) => mod.default),
@@ -26,7 +28,7 @@ const colourOptions: readonly ColourOption[] = [
     color: "#F4C550",
   },
   { value: "green", label: "Mint Green", color: "#9FBAAE" },
-  { value: "plue", label: "Sky Blue", color: "#9FB7CE" },
+  { value: "blue", label: "Sky Blue", color: "#9FB7CE" },
   { value: "pink", label: "Salmon Pink", color: "#E0A39A" },
   { value: "peach", label: "Peach", color: "#F0AA8D" },
 ];
@@ -46,16 +48,16 @@ const dot = (color = "transparent") => ({
   },
 });
 
-const colourStyles: StylesConfig<ColourOption> = {
+const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
   control: (styles) => ({ ...styles, backgroundColor: "white" }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color = chroma(data.color);
+    const color = chroma((data as ColourOption).color);
     return {
       ...styles,
       backgroundColor: isDisabled
         ? undefined
         : isSelected
-        ? data.color
+        ? (data as ColourOption).color
         : isFocused
         ? color.alpha(0.1).css()
         : undefined,
@@ -65,14 +67,14 @@ const colourStyles: StylesConfig<ColourOption> = {
         ? chroma.contrast(color, "white") > 2
           ? "white"
           : "black"
-        : data.color,
+        : (data as ColourOption).color,
       cursor: isDisabled ? "not-allowed" : "default",
 
       ":active": {
         ...styles[":active"],
         backgroundColor: !isDisabled
           ? isSelected
-            ? data.color
+            ? (data as ColourOption).color
             : color.alpha(0.3).css()
           : undefined,
       },
@@ -80,18 +82,27 @@ const colourStyles: StylesConfig<ColourOption> = {
   },
   input: (styles) => ({ ...styles, ...dot() }),
   placeholder: (styles) => ({ ...styles, ...dot("#ccc") }),
-  singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+  singleValue: (styles, { data }) => ({
+    ...styles,
+    ...dot((data as ColourOption).color),
+  }),
 };
 
-console.log(colourStyles);
-
 export default function ThemesSelector() {
+  const dispatch = useAppDispatch();
+
+  const handleChange = (newValue: unknown) => {
+    const theme = newValue as Readonly<ColourOption>;
+
+    dispatch(setTheme(theme.value));
+  };
+
   return (
     <Select
       defaultValue={colourOptions[0]}
       options={colourOptions}
       styles={colourStyles}
-      onChange={(o) => console.log(o)}
+      onChange={handleChange}
     />
   );
 }

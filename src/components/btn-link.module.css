@@ -1,0 +1,60 @@
+.btnLink {
+  display: inline-block;
+
+  width: 267px;
+
+  padding: 16px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55;
+
+  text-align: center;
+
+  color: var(--primary-black-color);
+
+  border: none;
+  border-radius: 12px;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.btnLink.yellow {
+  background-color: var(--primary-yellow-color);
+}
+
+.btnLink.yellow:hover {
+  background-color: var(--secondary-yellow-color);
+}
+
+.btnLink.green {
+  background-color: var(--primary-green-color);
+}
+
+.btnLink.green:hover {
+  background-color: var(--secondary-green-color);
+}
+
+.btnLink.blue {
+  background-color: var(--primary-blue-color);
+}
+
+.btnLink.blue:hover {
+  background-color: var(--secondary-blue-color);
+}
+
+.btnLink.pink {
+  background-color: var(--primary-pink-color);
+}
+
+.btnLink.pink:hover {
+  background-color: var(--secondary-pink-color);
+}
+
+.btnLink.peach {
+  background-color: var(--primary-peach-color);
+}
+
+.btnLink.peach:hover {
+  background-color: var(--secondary-peach-color);
+}

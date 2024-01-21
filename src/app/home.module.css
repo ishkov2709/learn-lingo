@@ -1,0 +1,96 @@
+.heroSection {
+  margin-bottom: 24px;
+
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  gap: 24px;
+}
+
+.aboutWrapper {
+  width: 100%;
+
+  padding: 98px 64px;
+
+  background-color: var(--gray-bg-color);
+
+  border-radius: 30px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+
+  margin-bottom: 32px;
+}
+
+.accent {
+  font-style: italic;
+}
+
+.text {
+  width: 471px;
+
+  letter-spacing: -0.02em;
+
+  margin-bottom: 64px;
+}
+
+.statsWrapper {
+  position: relative;
+  padding: 40px 0;
+
+  border-radius: 30px;
+}
+
+.yellow {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%23F4C550FF' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.green {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%239FBAAEFF' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.blue {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%239FB7CEFF' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.pink {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%23E0A39AFF' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.peach {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%23F0AA8DFF' stroke-width='4' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+.statList {
+  display: flex;
+  justify-content: space-evenly;
+
+  letter-spacing: -0.02em;
+}
+
+.statItem {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.statCount {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.statName {
+  width: 96px;
+
+  color: var(--secondary-black-color);
+
+  font-size: 14px;
+  font-weight: 400;
+}

@@ -1,7 +1,7 @@
 type initialState = {
-  currentTheme: number;
+  currentTheme: "yellow" | "green" | "blue" | "pink" | "peach";
 };
 
 export const initialState: initialState = {
-  currentTheme: 1,
+  currentTheme: "yellow",
 };

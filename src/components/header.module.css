@@ -28,4 +28,22 @@
 
 .authList {
   display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  font-weight: 700;
+}
+
+.loginLink {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.registerLink {
+  padding: 14px 39px;
+
+  background: var(--primary-black-color);
+  color: var(--primary-white-color);
+
+  border-radius: 12px;
 }

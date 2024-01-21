@@ -38,7 +38,12 @@ img {
   height: auto;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   color: var(--primary-black-color);
 
   font-weight: 400;

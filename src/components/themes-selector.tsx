@@ -5,13 +5,7 @@ import dynamic from "next/dynamic";
 import { useAppDispatch } from "@/redux/hooks";
 import { setTheme } from "@/redux/themes/themesSlice";
 
-const Select = dynamic(
-  () => import("react-select").then((mod) => mod.default),
-  {
-    ssr: false,
-    loading: () => null,
-  }
-);
+const Select = dynamic(() => import("react-select"), { ssr: false });
 
 interface ColourOption {
   readonly value: string;

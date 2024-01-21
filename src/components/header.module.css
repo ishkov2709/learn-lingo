@@ -44,16 +44,20 @@
 .loginLink {
   width: 81px;
 
+  padding: 14px 0;
+
   display: inline-flex;
   justify-content: flex-end;
   gap: 16px;
 
-  transition: gap 250ms ease-in-out;
+  transition: gap 250ms ease-in-out, color 250ms ease-in-out;
 }
 
 .loginLink:hover,
 .loginLink:focus {
   gap: 8px;
+
+  color: var(--secondary-black-color);
 }
 
 .registerLink {

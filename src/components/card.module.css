@@ -1,0 +1,41 @@
+.item {
+  display: flex;
+  gap: 48px;
+
+  padding: 24px;
+
+  background-color: var(--primary-white-color);
+
+  border-radius: 24px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  padding: 12px;
+
+  border-radius: 50%;
+}
+
+.yellowBorder {
+  border: 3px solid var(--secondary-yellow-color);
+}
+
+.greenBorder {
+  border: 3px solid var(--secondary-green-color);
+}
+
+.blueBorder {
+  border: 3px solid var(--secondary-blue-color);
+}
+
+.pinkBorder {
+  border: 3px solid var(--secondary-pink-color);
+}
+
+.peachBorder {
+  border: 3px solid var(--secondary-peach-color);
+}
+
+.rightSideWrapper {
+}

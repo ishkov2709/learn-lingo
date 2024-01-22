@@ -12,8 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  modal,
   children,
 }: Readonly<{
+  modal: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
@@ -21,6 +23,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <StoreProvider>
           <Header />
+          {modal}
           {children}
         </StoreProvider>
       </body>

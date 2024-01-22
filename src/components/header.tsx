@@ -41,7 +41,7 @@ const Header = () => {
 
         <ul className={style.authList}>
           <li>
-            <Link className={style.loginLink} href="/login">
+            <Link className={style.loginLink} href="/teachers/login">
               <LuLogIn
                 color={themeSwitcher(currentTheme).primaryColor}
                 size={20}
@@ -50,7 +50,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.registerLink} href="/register">
+            <Link className={style.registerLink} href="/teachers/register">
               Registration
             </Link>
           </li>

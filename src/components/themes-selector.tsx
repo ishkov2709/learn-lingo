@@ -43,7 +43,12 @@ const dot = (color = "transparent") => ({
 });
 
 const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
-  control: (styles) => ({ ...styles, backgroundColor: "white" }),
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: "white",
+    boxShadow: "none",
+    borderRadius: "14px",
+  }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma((data as ColourOption).color);
     return {
@@ -79,6 +84,13 @@ const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
   singleValue: (styles, { data }) => ({
     ...styles,
     ...dot((data as ColourOption).color),
+  }),
+  menu: (styles) => ({
+    ...styles,
+    boxShadow: "none",
+    border: "1px solid hsl(0, 0%, 80%)",
+    borderRadius: "14px",
+    overflow: "hidden",
   }),
 };
 

@@ -62,7 +62,11 @@ export default function Teachers() {
               }}
             />
           </form>
-          <ul>{<Card data={teachers[0]} />}</ul>
+          <ul className={style.teacherList}>
+            {teachers.map((teacher, i) => (
+              <Card key={i} data={teacher} />
+            ))}
+          </ul>
         </div>
       </section>
     </main>

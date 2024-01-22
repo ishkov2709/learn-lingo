@@ -2,7 +2,6 @@
   --primary-black-color: #121417;
   --secondary-black-color: #121417b3;
   --primary-white-color: #ffffff;
-  --gray-bg-color: #f8f8f8;
   --primary-yellow-color: #f4c550;
   --secondary-yellow-color: #fbe9ba;
   --primary-green-color: #9fbaae;
@@ -13,6 +12,10 @@
   --secondary-pink-color: #f2c0bd;
   --primary-peach-color: #f0aa8d;
   --secondary-peach-color: #f4c8ba;
+  --gray-bg-color: #f8f8f8;
+  --border-color: #12141733;
+  --subtitle-card-color: #8a8a89;
+  --accent-price-color: #38cd3e;
 }
 
 * {
@@ -40,6 +43,10 @@ img {
 
 html {
   height: 100%;
+}
+
+button {
+  cursor: pointer;
 }
 
 body {

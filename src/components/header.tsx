@@ -8,9 +8,22 @@ import { LuLogIn } from "react-icons/lu";
 import { useAppSelector } from "@/redux/hooks";
 import ThemesSelector from "./themes-selector";
 import { themeSwitcher } from "@/utils/themeSwitcher";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+  const pathname = usePathname();
+  const [segmentPath, setSegmentPath] = useState<string>("/home");
+
+  useEffect(() => {
+    setSegmentPath(
+      "/" +
+        pathname
+          .split("/")
+          .find((path) => path === "home" || path === "teachers")
+    );
+  }, [pathname]);
 
   return (
     <header>
@@ -41,7 +54,7 @@ const Header = () => {
 
         <ul className={style.authList}>
           <li>
-            <Link className={style.loginLink} href="/teachers/login">
+            <Link className={style.loginLink} href={"/login"}>
               <LuLogIn
                 color={themeSwitcher(currentTheme).primaryColor}
                 size={20}
@@ -50,7 +63,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.registerLink} href="/teachers/register">
+            <Link className={style.registerLink} href={"/register"}>
               Registration
             </Link>
           </li>

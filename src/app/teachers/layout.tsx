@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
-interface IPhotoFeedLayout {
+interface IProps {
   modal: ReactNode;
   children: ReactNode;
 }
 
-export default function Layout({ modal, children }: IPhotoFeedLayout) {
+export default function Layout({ modal, children }: IProps) {
   return (
     <>
       {modal}

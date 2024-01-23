@@ -16,7 +16,7 @@ interface IProps {
   onChange: (newValue: unknown) => void;
 }
 
-export const FilterSelector = ({ name, width, data, onChange }: IProps) => {
+const FilterSelector = ({ name, width, data, onChange }: IProps) => {
   const ControlComponent = (props: ControlProps<dataOption, false>) => (
     <div style={{ width: width }}>
       <p
@@ -95,3 +95,5 @@ export const FilterSelector = ({ name, width, data, onChange }: IProps) => {
     />
   );
 };
+
+export default FilterSelector;

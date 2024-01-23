@@ -19,10 +19,8 @@ interface IProps {
   price_per_hour: number;
 }
 
-export const Card = ({ data }: { data: IProps }) => {
+const Card = ({ data }: { data: IProps }) => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
-
-  console.log(data);
 
   return (
     <li className={style.cardItem}>
@@ -87,3 +85,5 @@ export const Card = ({ data }: { data: IProps }) => {
     </li>
   );
 };
+
+export default Card;

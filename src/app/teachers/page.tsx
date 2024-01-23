@@ -1,9 +1,9 @@
 "use client";
 
-import { FilterSelector } from "@/components/filter-selector";
+import FilterSelector from "@/components/filter-selector";
 import style from "./teachers.module.css";
 import teachers from "../../../teachers.json";
-import { Card } from "@/components/card";
+import Card from "@/components/card";
 
 const languageOptions = [
   { value: "French", label: "French" },
@@ -28,8 +28,6 @@ const priceOptions = [
 ];
 
 export default function Teachers() {
-  console.log(teachers[0]);
-
   return (
     <main
       style={{ backgroundColor: "#F8F8F8", minHeight: "calc(100% - 88px)" }}

@@ -8,7 +8,7 @@ interface IProps {
   children: ReactNode;
 }
 
-export const BtnLink = ({ href, children }: IProps) => {
+const BtnLink = ({ href, children }: IProps) => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
@@ -17,3 +17,5 @@ export const BtnLink = ({ href, children }: IProps) => {
     </Link>
   );
 };
+
+export default BtnLink;

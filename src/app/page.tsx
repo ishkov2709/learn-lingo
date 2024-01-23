@@ -4,7 +4,7 @@ import Image from "next/image";
 import style from "./home.module.css";
 import { useAppSelector } from "@/redux/hooks";
 import { themeSwitcher } from "@/utils/themeSwitcher";
-import { BtnLink } from "@/components/btn-link";
+import BtnLink from "@/components/btn-link";
 import yellow from "../../public/images/hero/yellow.png";
 import green from "../../public/images/hero/green.png";
 import blue from "../../public/images/hero/blue.png";
@@ -21,6 +21,7 @@ const images = {
 
 export default function Home() {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+
   return (
     <main>
       <section className={style.heroSection}>

@@ -94,7 +94,7 @@ const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
   }),
 };
 
-export default function ThemesSelector() {
+const ThemesSelector = () => {
   const dispatch = useAppDispatch();
 
   const handleChange = (newValue: unknown) => {
@@ -111,4 +111,6 @@ export default function ThemesSelector() {
       onChange={handleChange}
     />
   );
-}
+};
+
+export default ThemesSelector;

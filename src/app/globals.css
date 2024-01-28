@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-black-color: #121417;
   --secondary-black-color: #121417b3;

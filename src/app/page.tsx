@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import style from "./home.module.css";
+import styles from "./styles.module.css";
 import { useAppSelector } from "@/redux/hooks";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import BtnLink from "@/components/btn-link";
@@ -24,13 +24,13 @@ export default function Home() {
 
   return (
     <main>
-      <section className={style.heroSection}>
-        <div className={`container ${style.container}`}>
-          <div className={style.aboutWrapper}>
-            <h1 className={style.title}>
+      <section className={styles.heroSection}>
+        <div className={`container ${styles.container}`}>
+          <div className={styles.aboutWrapper}>
+            <h1 className={styles.title}>
               Unlock your potential with the best{" "}
               <span
-                className={style.accent}
+                className={styles.accent}
                 style={{
                   backgroundColor: themeSwitcher(currentTheme).secondaryColor,
                 }}
@@ -40,7 +40,7 @@ export default function Home() {
               tutors
             </h1>
 
-            <p className={style.text}>
+            <p className={styles.text}>
               Embark on an Exciting Language Journey with Expert Language
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
@@ -58,23 +58,23 @@ export default function Home() {
       </section>
       <section>
         <div className="container">
-          <div className={`${style.statsWrapper} ${style[currentTheme]}`}>
-            <ul className={style.statList}>
-              <li className={style.statItem}>
-                <p className={style.statCount}>32,000 +</p>
-                <p className={style.statName}>Experienced tutors</p>
+          <div className={`${styles.statsWrapper} ${styles[currentTheme]}`}>
+            <ul className={styles.statList}>
+              <li className={styles.statItem}>
+                <p className={styles.statCount}>32,000 +</p>
+                <p className={styles.statName}>Experienced tutors</p>
               </li>
-              <li className={style.statItem}>
-                <p className={style.statCount}>300,000 +</p>
-                <p className={style.statName}>5-star tutor reviews</p>
+              <li className={styles.statItem}>
+                <p className={styles.statCount}>300,000 +</p>
+                <p className={styles.statName}>5-star tutor reviews</p>
               </li>
-              <li className={style.statItem}>
-                <p className={style.statCount}>120 +</p>
-                <p className={style.statName}>Subjects taught</p>
+              <li className={styles.statItem}>
+                <p className={styles.statCount}>120 +</p>
+                <p className={styles.statName}>Subjects taught</p>
               </li>
-              <li className={style.statItem}>
-                <p className={style.statCount}>200 +</p>
-                <p className={style.statName}>Tutor nationalities</p>
+              <li className={styles.statItem}>
+                <p className={styles.statCount}>200 +</p>
+                <p className={styles.statName}>Tutor nationalities</p>
               </li>
             </ul>
           </div>

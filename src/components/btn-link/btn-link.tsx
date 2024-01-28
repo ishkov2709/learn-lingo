@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import { ReactNode } from "react";
-import style from "./btn-link.module.css";
+import styles from "./styles.module.css";
 
 interface IProps {
   href: string;
@@ -12,7 +12,7 @@ const BtnLink = ({ href, children }: IProps) => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
-    <Link className={`${style.btnLink} ${style[currentTheme]}`} href={href}>
+    <Link className={`${styles.btnLink} ${styles[currentTheme]}`} href={href}>
       {children}
     </Link>
   );

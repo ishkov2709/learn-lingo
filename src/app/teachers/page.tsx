@@ -1,7 +1,7 @@
 "use client";
 
 import FilterSelector from "@/components/filter-selector";
-import style from "./teachers.module.css";
+import styles from "./styles.module.css";
 import teachers from "../../../teachers.json";
 import Card from "@/components/card";
 
@@ -32,9 +32,9 @@ export default function Teachers() {
     <main
       style={{ backgroundColor: "#F8F8F8", minHeight: "calc(100% - 88px)" }}
     >
-      <section className={style.section}>
+      <section className={styles.section}>
         <div className="container">
-          <form className={style.form}>
+          <form className={styles.form}>
             <FilterSelector
               name="Languages"
               width="221px"
@@ -60,7 +60,7 @@ export default function Teachers() {
               }}
             />
           </form>
-          <ul className={style.teacherList}>
+          <ul className={styles.teacherList}>
             {teachers.map((teacher, i) => (
               <Card key={i} data={teacher} />
             ))}

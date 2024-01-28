@@ -104,12 +104,14 @@ const ThemesSelector = () => {
   };
 
   return (
-    <Select
-      defaultValue={colourOptions[0]}
-      options={colourOptions}
-      styles={colourStyles}
-      onChange={handleChange}
-    />
+    <div className="w-72 flex justify-center">
+      <Select
+        defaultValue={colourOptions[0]}
+        options={colourOptions}
+        styles={colourStyles}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 

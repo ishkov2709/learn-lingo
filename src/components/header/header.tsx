@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../public/images/logo.svg";
-import style from "./header.module.css";
+import logo from "../../../public/images/logo.svg";
+import styles from "./styles.module.css";
 import Link from "next/link";
 import { LuLogIn } from "react-icons/lu";
 import { useAppSelector } from "@/redux/hooks";
-import ThemesSelector from "./themes-selector";
+import ThemesSelector from "../themes-selector";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,22 +14,17 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
   const pathname = usePathname();
-  const [segmentPath, setSegmentPath] = useState<string>("/home");
+  const [segmentPath, setSegmentPath] = useState<string>("/");
 
   useEffect(() => {
-    setSegmentPath(
-      "/" +
-        pathname
-          .split("/")
-          .find((path) => path === "home" || path === "teachers")
-    );
+    setSegmentPath(pathname.length > 1 ? pathname : "");
   }, [pathname]);
 
   return (
     <header>
-      <div className={`container ${style.containerHeader}`}>
+      <div className={`container ${styles.containerHeader}`}>
         <div>
-          <span className={style.logoWrapper}>
+          <span className={styles.logoWrapper}>
             <Image src={logo} alt="flag-ukraine" width={28} height={28} />
             <p>LearnLingo</p>
           </span>
@@ -37,24 +32,24 @@ const Header = () => {
 
         <ThemesSelector />
 
-        <nav className={style.nav}>
-          <ul className={style.navList}>
+        <nav className={styles.nav}>
+          <ul className={styles.navList}>
             <li>
-              <Link className={style.navLink} href="/">
+              <Link className={styles.navLink} href="/">
                 Home
               </Link>
             </li>
             <li>
-              <Link className={style.navLink} href="/teachers">
+              <Link className={styles.navLink} href="/teachers">
                 Teachers
               </Link>
             </li>
           </ul>
         </nav>
 
-        <ul className={style.authList}>
+        <ul className={styles.authList}>
           <li>
-            <Link className={style.loginLink} href={"/login"}>
+            <Link className={styles.loginLink} href={segmentPath + "/login"}>
               <LuLogIn
                 color={themeSwitcher(currentTheme).primaryColor}
                 size={20}
@@ -63,7 +58,10 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link className={style.registerLink} href={"/register"}>
+            <Link
+              className={styles.registerLink}
+              href={segmentPath + "/register"}
+            >
               Registration
             </Link>
           </li>

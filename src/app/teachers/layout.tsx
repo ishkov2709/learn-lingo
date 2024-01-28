@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
 interface IProps {
-  modal: ReactNode;
   children: ReactNode;
+  modal: ReactNode;
 }
 
-export default function Layout({ modal, children }: IProps) {
+export default function Layout({ children, modal }: IProps) {
   return (
     <>
       {modal}

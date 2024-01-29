@@ -5,11 +5,11 @@ import styles from "./styles.module.css";
 import { useAppSelector } from "@/redux/hooks";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import BtnLink from "@/components/btn-link";
-import yellow from "../../public/images/hero/yellow.png";
-import green from "../../public/images/hero/green.png";
-import blue from "../../public/images/hero/blue.png";
-import pink from "../../public/images/hero/pink.png";
-import peach from "../../public/images/hero/peach.png";
+import yellow from "../../../public/images/hero/yellow.png";
+import green from "../../../public/images/hero/green.png";
+import blue from "../../../public/images/hero/blue.png";
+import pink from "../../../public/images/hero/pink.png";
+import peach from "../../../public/images/hero/peach.png";
 
 const images = {
   yellow: yellow,
@@ -53,6 +53,7 @@ export default function Home() {
             alt="girl"
             width={568}
             height={530}
+            priority
           />
         </div>
       </section>

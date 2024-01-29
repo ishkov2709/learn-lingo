@@ -1,0 +1,106 @@
+.title {
+  font-size: 40px;
+  letter-spacing: -0.02em;
+
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 16px;
+
+  margin-bottom: 40px;
+}
+
+.label {
+  display: block;
+  position: relative;
+
+  margin-bottom: 18px;
+}
+
+.label:last-of-type {
+  margin-bottom: 40px;
+}
+
+.showIcon {
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  transform: translateY(-50%);
+}
+
+.field {
+  width: 438px;
+
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #1214171a;
+
+  outline: none;
+
+  transition: box-shadow 250ms ease-in-out;
+}
+
+.field:focus {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.field::placeholder {
+  color: var(--primary-black-color);
+}
+
+.btnSubmit {
+  display: block;
+
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 16px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  border-radius: 12px;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.yellow {
+  background-color: var(--primary-yellow-color);
+}
+
+.yellow:hover {
+  background-color: var(--secondary-yellow-color);
+}
+
+.green {
+  background-color: var(--primary-green-color);
+}
+
+.green:hover {
+  background-color: var(--secondary-green-color);
+}
+
+.blue {
+  background-color: var(--primary-blue-color);
+}
+
+.blue:hover {
+  background-color: var(--secondary-blue-color);
+}
+
+.pink {
+  background-color: var(--primary-pink-color);
+}
+
+.pink:hover {
+  background-color: var(--secondary-pink-color);
+}
+
+.peach {
+  background-color: var(--primary-peach-color);
+}
+
+.peach:hover {
+  background-color: var(--secondary-peach-color);
+}

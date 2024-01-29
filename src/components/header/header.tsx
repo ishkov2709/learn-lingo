@@ -35,7 +35,7 @@ const Header = () => {
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li>
-              <Link className={styles.navLink} href="/">
+              <Link className={styles.navLink} href="/home">
                 Home
               </Link>
             </li>
@@ -49,7 +49,11 @@ const Header = () => {
 
         <ul className={styles.authList}>
           <li>
-            <Link className={styles.loginLink} href={segmentPath + "/login"}>
+            <Link
+              className={styles.loginLink}
+              scroll={false}
+              href={segmentPath + "/login"}
+            >
               <LuLogIn
                 color={themeSwitcher(currentTheme).primaryColor}
                 size={20}
@@ -60,6 +64,7 @@ const Header = () => {
           <li>
             <Link
               className={styles.registerLink}
+              scroll={false}
               href={segmentPath + "/register"}
             >
               Registration

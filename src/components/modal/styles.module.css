@@ -1,0 +1,61 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #35343454;
+
+  animation: opacity 150ms ease-in-out;
+
+  z-index: 10;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 566px;
+
+  padding: 64px;
+
+  background-color: var(--primary-white-color);
+
+  border-radius: 30px;
+
+  animation: scaleOpacity 150ms ease;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+
+  color: var(--primary-black-color);
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOpacity {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

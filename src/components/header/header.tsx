@@ -17,7 +17,14 @@ const Header = () => {
   const [segmentPath, setSegmentPath] = useState<string>("/");
 
   useEffect(() => {
-    setSegmentPath(pathname.length > 1 ? pathname : "");
+    const arrayPath = pathname.split("/").filter((el) => el !== "");
+    setSegmentPath(
+      !arrayPath.includes("login") &&
+        !arrayPath.includes("register") &&
+        arrayPath.length === 1
+        ? pathname
+        : ""
+    );
   }, [pathname]);
 
   return (

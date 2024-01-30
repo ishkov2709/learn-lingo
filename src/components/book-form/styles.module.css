@@ -48,7 +48,7 @@
 
   display: block;
 
-  padding: 4px 0 0 12px;
+  padding: 2px 0 0 12px;
 
   font-weight: 400;
   font-size: 16px;
@@ -101,7 +101,7 @@
 }
 
 .radioLabel input + .customRadio.yellowRadio {
-  border: 1px solid var(--primary-yellow-color);
+  border: 2px solid var(--primary-yellow-color);
 }
 
 .radioLabel input:checked + .customRadio.yellowRadio::after {
@@ -109,7 +109,7 @@
 }
 
 .radioLabel input + .customRadio.greenRadio {
-  border: 1px solid var(--primary-green-color);
+  border: 2px solid var(--primary-green-color);
 }
 
 .radioLabel input:checked + .customRadio.greenRadio::after {
@@ -117,7 +117,7 @@
 }
 
 .radioLabel input + .customRadio.blueRadio {
-  border: 1px solid var(--primary-blue-color);
+  border: 2px solid var(--primary-blue-color);
 }
 
 .radioLabel input:checked + .customRadio.blueRadio::after {
@@ -125,7 +125,7 @@
 }
 
 .radioLabel input + .customRadio.pinkRadio {
-  border: 1px solid var(--primary-pink-color);
+  border: 2px solid var(--primary-pink-color);
 }
 
 .radioLabel input:checked + .customRadio.pinkRadio::after {
@@ -133,7 +133,7 @@
 }
 
 .radioLabel input + .customRadio.peachRadio {
-  border: 1px solid var(--primary-peach-color);
+  border: 2px solid var(--primary-peach-color);
 }
 
 .radioLabel input:checked + .customRadio.peachRadio::after {

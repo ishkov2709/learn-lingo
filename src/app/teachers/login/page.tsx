@@ -1,7 +1,13 @@
-import Modal from "@/components/modal/modal";
+import LoginForm from "@/components/login-form";
 
 export interface PageProps {}
 
 export default function Page() {
-  return <Modal></Modal>;
+  return (
+    <main>
+      <section className="py-10">
+        <LoginForm />
+      </section>
+    </main>
+  );
 }

@@ -1,5 +1,7 @@
+"use client";
+
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import styles from "./styles.module.css";
+import styles from "../register-form/styles.module.css";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { useState } from "react";

@@ -1,5 +1,7 @@
 .formWrapper {
   width: 472px;
+
+  margin: 0 auto;
 }
 
 .title {
@@ -35,9 +37,6 @@
   color: var(--subtitle-card-color);
 
   font-size: 12px;
-}
-
-.teachersName {
 }
 
 .radioBox {

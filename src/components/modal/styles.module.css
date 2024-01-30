@@ -36,6 +36,12 @@
   color: var(--primary-black-color);
 
   cursor: pointer;
+
+  transition: transform 250ms ease-in-out;
+}
+
+.closeIcon:hover {
+  transform: rotate(-90deg);
 }
 
 @keyframes opacity {

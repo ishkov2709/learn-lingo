@@ -1,3 +1,5 @@
+"use client";
+
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import styles from "./styles.module.css";
 import clsx from "clsx";

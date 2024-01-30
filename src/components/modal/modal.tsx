@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 import { IoCloseSharp } from "react-icons/io5";
@@ -12,6 +12,14 @@ interface ModalProps {
 const Modal = ({ children }: ModalProps) => {
   const overlay = useRef(null);
   const router = useRouter();
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  });
 
   const handleClick = (e: React.SyntheticEvent<EventTarget>) => {
     e.target === overlay.current && router.back();

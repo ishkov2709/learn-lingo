@@ -1,3 +1,7 @@
+.formWrapper {
+  width: 438px;
+}
+
 .title {
   font-size: 40px;
   letter-spacing: -0.02em;
@@ -13,6 +17,7 @@
 
 .label {
   display: block;
+
   position: relative;
 
   margin-bottom: 18px;

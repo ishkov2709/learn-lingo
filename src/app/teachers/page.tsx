@@ -62,7 +62,7 @@ export default function Teachers() {
           </form>
           <ul className={styles.teacherList}>
             {teachers.map((teacher, i) => (
-              <Card key={i} data={teacher} />
+              <Card key={i} data={{ ...teacher, id: String(i) }} />
             ))}
           </ul>
         </div>

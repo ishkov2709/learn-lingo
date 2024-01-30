@@ -16,7 +16,7 @@ export default function LoginForm() {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
-    <>
+    <div className={styles.formWrapper}>
       <h1 className={styles.title}>Log In</h1>
       <p className={styles.text}>
         Welcome back! Please enter your credentials to access your account and
@@ -79,6 +79,6 @@ export default function LoginForm() {
           </button>
         </Form>
       </Formik>
-    </>
+    </div>
   );
 }

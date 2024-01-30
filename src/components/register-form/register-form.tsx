@@ -17,7 +17,7 @@ export default function RegisterForm() {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
-    <>
+    <div className={styles.formWrapper}>
       <h1 className={styles.title}>Registration</h1>
       <p className={styles.text}>
         Thank you for your interest in our platform! In order to register, we
@@ -90,6 +90,6 @@ export default function RegisterForm() {
           </button>
         </Form>
       </Formik>
-    </>
+    </div>
   );
 }

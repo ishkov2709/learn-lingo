@@ -1,0 +1,239 @@
+.formWrapper {
+  width: 472px;
+}
+
+.title {
+  font-size: 40px;
+  letter-spacing: -0.02em;
+
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 16px;
+
+  margin-bottom: 20px;
+}
+
+.teacherBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 40px;
+
+  font-weight: 500;
+}
+
+.teacherPhoto {
+  border-radius: 50%;
+}
+
+.sign {
+  margin-bottom: 4px;
+
+  color: var(--subtitle-card-color);
+
+  font-size: 12px;
+}
+
+.teachersName {
+}
+
+.radioBox {
+  margin-bottom: 40px;
+}
+
+.radioLabel {
+  position: relative;
+
+  display: block;
+
+  padding: 4px 0 0 12px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.radioLabel:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+
+.radioLabel input {
+  opacity: 0;
+}
+
+.radioLabel input + .customRadio {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  display: inline-block;
+
+  width: 22px;
+  height: 22px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.radioLabel input + .customRadio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+
+  display: inline-block;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  transition: transform 250ms ease;
+}
+
+.radioLabel input:checked + .customRadio::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radioLabel input + .customRadio.yellowRadio {
+  border: 1px solid var(--primary-yellow-color);
+}
+
+.radioLabel input:checked + .customRadio.yellowRadio::after {
+  background-color: var(--primary-yellow-color);
+}
+
+.radioLabel input + .customRadio.greenRadio {
+  border: 1px solid var(--primary-green-color);
+}
+
+.radioLabel input:checked + .customRadio.greenRadio::after {
+  background-color: var(--primary-green-color);
+}
+
+.radioLabel input + .customRadio.blueRadio {
+  border: 1px solid var(--primary-blue-color);
+}
+
+.radioLabel input:checked + .customRadio.blueRadio::after {
+  background-color: var(--primary-blue-color);
+}
+
+.radioLabel input + .customRadio.pinkRadio {
+  border: 1px solid var(--primary-pink-color);
+}
+
+.radioLabel input:checked + .customRadio.pinkRadio::after {
+  background-color: var(--primary-pink-color);
+}
+
+.radioLabel input + .customRadio.peachRadio {
+  border: 1px solid var(--primary-peach-color);
+}
+
+.radioLabel input:checked + .customRadio.peachRadio::after {
+  background-color: var(--primary-peach-color);
+}
+
+.label {
+  display: block;
+
+  position: relative;
+
+  margin-bottom: 18px;
+}
+
+.label:last-of-type {
+  margin-bottom: 40px;
+}
+
+.question {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.field {
+  width: 472px;
+
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid #1214171a;
+
+  outline: none;
+
+  transition: box-shadow 250ms ease-in-out;
+}
+
+.field:focus {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.field::placeholder {
+  color: var(--primary-black-color);
+}
+
+.btnSubmit {
+  display: block;
+
+  width: 100%;
+
+  margin: 0 auto;
+  padding: 16px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  border-radius: 12px;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.yellow {
+  background-color: var(--primary-yellow-color);
+}
+
+.yellow:hover {
+  background-color: var(--secondary-yellow-color);
+}
+
+.green {
+  background-color: var(--primary-green-color);
+}
+
+.green:hover {
+  background-color: var(--secondary-green-color);
+}
+
+.blue {
+  background-color: var(--primary-blue-color);
+}
+
+.blue:hover {
+  background-color: var(--secondary-blue-color);
+}
+
+.pink {
+  background-color: var(--primary-pink-color);
+}
+
+.pink:hover {
+  background-color: var(--secondary-pink-color);
+}
+
+.peach {
+  background-color: var(--primary-peach-color);
+}
+
+.peach:hover {
+  background-color: var(--secondary-peach-color);
+}

@@ -4,8 +4,10 @@ import { useAppSelector } from "@/redux/hooks";
 import { FiBookOpen } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
+import Link from "next/link";
 
-interface IProps {
+export interface TeacherProps {
+  id?: string;
   avatar_url: string;
   name: string;
   surname: string;
@@ -19,7 +21,7 @@ interface IProps {
   price_per_hour: number;
 }
 
-const Card = ({ data }: { data: IProps }) => {
+const Card = ({ data }: { data: TeacherProps }) => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
@@ -52,9 +54,13 @@ const Card = ({ data }: { data: IProps }) => {
           <span className={styles.aboutText}>{data.conditions.join(" ")}</span>
         </p>
 
-        <button className={styles.moreBtn} type="button">
+        <Link
+          href={`/teachers/${data.id}`}
+          className={styles.moreBtn}
+          scroll={false}
+        >
           Read more
-        </button>
+        </Link>
 
         <ul className={styles.levelList}>
           {data.levels.map((el, i) => (

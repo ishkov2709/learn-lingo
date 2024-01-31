@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
   const pathname = usePathname();
-  const [segmentPath, setSegmentPath] = useState<string>("/");
+  const [segmentPath, setSegmentPath] = useState<string>("");
 
   useEffect(() => {
     const arrayPath = pathname.split("/").filter((el) => el !== "");

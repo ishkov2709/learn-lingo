@@ -7,7 +7,7 @@ import { CiHeart } from "react-icons/ci";
 import Link from "next/link";
 
 export interface TeacherProps {
-  id?: string;
+  _id: string;
   avatar_url: string;
   name: string;
   surname: string;
@@ -55,7 +55,7 @@ const Card = ({ data }: { data: TeacherProps }) => {
         </p>
 
         <Link
-          href={`/teachers/${data.id}`}
+          href={`/teachers/${data._id}`}
           className={styles.moreBtn}
           scroll={false}
         >

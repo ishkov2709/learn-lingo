@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
 import connect from "../../../../db";
+import Teacher from "../../../../models/Teacher";
 
 export async function GET() {
   try {
     await connect();
+    const teachers = await Teacher.find();
+
+    return NextResponse.json(teachers, { status: 200 });
   } catch (error) {
-    return new NextResponse("Error in fetching teacher's data");
+    return NextResponse.json(
+      { message: "Error fetching teacher`s data" },
+      { status: 500 }
+    );
   }
 }

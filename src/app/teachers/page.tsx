@@ -1,6 +1,6 @@
 "use client";
 
-import FilterSelector from "@/components/filter-selector";
+// import FilterSelector from "@/components/filter-selector";
 import styles from "./styles.module.css";
 import Card from "@/components/card";
 import { TeacherProps } from "@/components/card/card";

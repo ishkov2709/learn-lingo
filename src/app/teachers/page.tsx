@@ -1,11 +1,19 @@
 "use client";
 
-// import FilterSelector from "@/components/filter-selector";
-import styles from "./styles.module.css";
 import Card from "@/components/card";
 import { TeacherProps } from "@/components/card/card";
+import FilterSelector from "@/components/filter-selector";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getTeachers } from "@/redux/teachers/thunk";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+
+const FiltersForm = dynamic(() => import("../../components/filters-form"), {
+  ssr: false,
+});
 
 const languageOptions = [
+  { value: "", label: "All" },
   { value: "French", label: "French" },
   { value: "English", label: "English" },
   { value: "German", label: "German" },
@@ -14,6 +22,7 @@ const languageOptions = [
 ];
 
 const levelOptions = [
+  { value: "", label: "All" },
   { value: "A1 Beginner", label: "A1 Beginner" },
   { value: "A2 Elementary", label: "A2 Elementary" },
   { value: "B1 Intermediate", label: "B1 Intermediate" },
@@ -21,61 +30,51 @@ const levelOptions = [
 ];
 
 const priceOptions = [
+  { value: "", label: "All" },
   { value: "10", label: "10" },
   { value: "20", label: "20" },
   { value: "30", label: "30" },
   { value: "40", label: "40" },
 ];
 
-async function getTeachers() {
-  const res = await fetch(process.env.URL + "/api/teachers");
+export default function Teachers() {
+  const teachers = useAppSelector((state) => state.teachers.teachers);
+  const dispatch = useAppDispatch();
 
-  return res.json();
-}
-
-export default async function Teachers() {
-  const teachers = await getTeachers();
+  useEffect(() => {
+    dispatch(getTeachers());
+  }, [dispatch]);
 
   return (
-    <main
-      style={{ backgroundColor: "#F8F8F8", minHeight: "calc(100% - 88px)" }}
-    >
-      <section className={styles.section}>
-        <div className="container">
-          <form className={styles.form}>
-            {/* <FilterSelector
-              name="Languages"
-              width="221px"
-              data={languageOptions}
-              onChange={(e) => {
-                console.log(e);
-              }}
-            />
-            <FilterSelector
-              name="Level of knowledge"
-              width="198px"
-              data={levelOptions}
-              onChange={(e) => {
-                console.log(e);
-              }}
-            />
-            <FilterSelector
-              name="Price"
-              width="124px"
-              data={priceOptions}
-              onChange={(e) => {
-                console.log(e);
-              }}
-            /> */}
-          </form>
-          <ul className={styles.teacherList}>
-            {teachers.length > 0 &&
-              teachers.map((teacher: TeacherProps) => (
-                <Card key={teacher._id} data={teacher} />
-              ))}
-          </ul>
-        </div>
-      </section>
-    </main>
+    <>
+      <div className="min-h-20 mb-8">
+        <FiltersForm>
+          <FilterSelector
+            label="Languages"
+            name="language"
+            width="221px"
+            data={languageOptions}
+          />
+          <FilterSelector
+            label="Level of knowledge"
+            name="level"
+            width="198px"
+            data={levelOptions}
+          />
+          <FilterSelector
+            label="Price"
+            name="price"
+            width="124px"
+            data={priceOptions}
+          />
+        </FiltersForm>
+      </div>
+      <ul className="flex flex-col gap-8">
+        {teachers.length > 0 &&
+          teachers.map((teacher: TeacherProps) => (
+            <Card key={teacher._id} data={teacher} />
+          ))}
+      </ul>
+    </>
   );
 }

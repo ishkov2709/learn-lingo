@@ -1,9 +1,11 @@
+"use client";
+
 import { TailSpin } from "react-loader-spinner";
 
 export default function Page() {
   return (
     <main className="flex justify-center text-3xl py-6">
-      {/* <TailSpin
+      <TailSpin
         visible={true}
         height="80"
         width="80"
@@ -12,8 +14,7 @@ export default function Page() {
         radius="1"
         wrapperStyle={{}}
         wrapperClass=""
-      /> */}
-      loading
+      />
     </main>
   );
 }

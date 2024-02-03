@@ -1,22 +1,24 @@
+"use client";
+
 import { ComponentType } from "react";
 import { ControlProps, GroupBase, components } from "react-select";
 import dynamic from "next/dynamic";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
-interface dataOption {
+export interface dataOption {
   value: string;
   label: string;
 }
 
 interface IProps {
+  label: string;
   name: string;
   width: string;
-  data: { value: string; label: string }[];
-  onChange: (newValue: unknown) => void;
+  data: dataOption[];
 }
 
-const FilterSelector = ({ name, width, data, onChange }: IProps) => {
+const FilterSelector = ({ label, name, width, data }: IProps) => {
   const ControlComponent = (props: ControlProps<dataOption, false>) => (
     <div style={{ width: width }}>
       <p
@@ -27,7 +29,7 @@ const FilterSelector = ({ name, width, data, onChange }: IProps) => {
           marginBottom: "8px",
         }}
       >
-        {name}
+        {label}
       </p>
       <components.Control {...props} />
     </div>
@@ -43,7 +45,6 @@ const FilterSelector = ({ name, width, data, onChange }: IProps) => {
           ControlProps<unknown, boolean, GroupBase<unknown>>
         >,
       }}
-      onChange={onChange}
       defaultValue={data[0]}
       styles={{
         control: (baseStyles) => ({

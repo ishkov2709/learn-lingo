@@ -48,7 +48,7 @@
 
   display: inline-flex;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 14px;
 
   transition: gap 250ms ease-in-out, color 250ms ease-in-out;
 }

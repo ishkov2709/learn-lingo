@@ -1,0 +1,62 @@
+.btn {
+  display: block;
+
+  margin: 64px auto 0 auto;
+
+  width: 267px;
+
+  padding: 16px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55;
+
+  text-align: center;
+
+  color: var(--primary-black-color);
+
+  border: none;
+  border-radius: 12px;
+
+  transition: background-color 250ms ease-in-out;
+}
+
+.btn.yellow {
+  background-color: var(--primary-yellow-color);
+}
+
+.btn.yellow:hover {
+  background-color: var(--secondary-yellow-color);
+}
+
+.btn.green {
+  background-color: var(--primary-green-color);
+}
+
+.btn.green:hover {
+  background-color: var(--secondary-green-color);
+}
+
+.btn.blue {
+  background-color: var(--primary-blue-color);
+}
+
+.btn.blue:hover {
+  background-color: var(--secondary-blue-color);
+}
+
+.btn.pink {
+  background-color: var(--primary-pink-color);
+}
+
+.btn.pink:hover {
+  background-color: var(--secondary-pink-color);
+}
+
+.btn.peach {
+  background-color: var(--primary-peach-color);
+}
+
+.btn.peach:hover {
+  background-color: var(--secondary-peach-color);
+}

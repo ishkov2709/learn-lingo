@@ -1,23 +1,31 @@
 import { TeacherProps } from "@/components/card/card";
 
-interface InitialState {
+export interface InitialState {
   teachers: TeacherProps[];
   filter: {
-    language: string;
-    level: string;
+    languages: string;
+    levels: string;
     price: string;
   };
   isLoading: boolean;
   error: string | null | unknown;
+  pagination: {
+    perPage: Readonly<number>;
+    page: number;
+  };
 }
 
 export const initialState: InitialState = {
   teachers: [],
   filter: {
-    language: "",
-    level: "",
+    languages: "",
+    levels: "",
     price: "",
   },
   isLoading: false,
   error: null,
+  pagination: {
+    perPage: 3,
+    page: 0,
+  },
 };

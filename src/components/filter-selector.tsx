@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
-export interface dataOption {
+export interface DataOption {
   value: string;
   label: string;
 }
@@ -15,11 +15,12 @@ interface IProps {
   label: string;
   name: string;
   width: string;
-  data: dataOption[];
+  data: DataOption[];
+  onChange: (newValue: unknown) => void;
 }
 
-const FilterSelector = ({ label, name, width, data }: IProps) => {
-  const ControlComponent = (props: ControlProps<dataOption, false>) => (
+const FilterSelector = ({ label, name, width, data, onChange }: IProps) => {
+  const ControlComponent = (props: ControlProps<DataOption, false>) => (
     <div style={{ width: width }}>
       <p
         style={{
@@ -45,6 +46,7 @@ const FilterSelector = ({ label, name, width, data }: IProps) => {
           ControlProps<unknown, boolean, GroupBase<unknown>>
         >,
       }}
+      onChange={onChange}
       defaultValue={data[0]}
       styles={{
         control: (baseStyles) => ({

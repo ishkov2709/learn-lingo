@@ -1,5 +1,5 @@
 import connect from "./utils";
-import Teacher from "./models/Teacher";
+import Teacher from "./models/teachers";
 
 // export async function getTeachers() {
 //   try {

@@ -1,15 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { DataOption } from "@/utils/reactSelectOptions";
 import { ComponentType } from "react";
 import { ControlProps, GroupBase, components } from "react-select";
-import dynamic from "next/dynamic";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
-
-export interface DataOption {
-  value: string;
-  label: string;
-}
 
 interface IProps {
   label: string;

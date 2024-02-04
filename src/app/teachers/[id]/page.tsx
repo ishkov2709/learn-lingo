@@ -7,8 +7,6 @@ export interface BookPageParams {
 }
 
 export default function Page({ params }: BookPageParams) {
-  console.log(params.id);
-
   return (
     <main>
       <BookForm id={params.id} />

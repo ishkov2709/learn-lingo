@@ -4,11 +4,12 @@ import { GroupBase, StylesConfig } from "react-select";
 import dynamic from "next/dynamic";
 import { useAppDispatch } from "@/redux/hooks";
 import { setTheme } from "@/redux/themes/themesSlice";
+import { Theme } from "@/redux/themes/initialState";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
 interface ColourOption {
-  readonly value: string;
+  readonly value: Theme;
   readonly label: string;
   readonly color: string;
   readonly isFixed?: boolean;
@@ -17,14 +18,14 @@ interface ColourOption {
 
 const colourOptions: readonly ColourOption[] = [
   {
-    value: "yellow",
+    value: Theme.Yellow,
     label: "Sunflower Yellow",
     color: "#F4C550",
   },
-  { value: "green", label: "Mint Green", color: "#9FBAAE" },
-  { value: "blue", label: "Sky Blue", color: "#9FB7CE" },
-  { value: "pink", label: "Salmon Pink", color: "#E0A39A" },
-  { value: "peach", label: "Peach", color: "#F0AA8D" },
+  { value: Theme.Green, label: "Mint Green", color: "#9FBAAE" },
+  { value: Theme.Blue, label: "Sky Blue", color: "#9FB7CE" },
+  { value: Theme.Pink, label: "Salmon Pink", color: "#E0A39A" },
+  { value: Theme.Peach, label: "Peach", color: "#F0AA8D" },
 ];
 
 const dot = (color = "transparent") => ({

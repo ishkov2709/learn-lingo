@@ -1,4 +1,4 @@
-import Teacher from "@/lib/models/Teacher";
+import Teacher from "@/lib/models/teachers";
 import connect from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 

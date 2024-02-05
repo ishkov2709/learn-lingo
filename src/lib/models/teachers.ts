@@ -49,7 +49,7 @@ const teacherSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 export default mongoose.models.Teacher ||

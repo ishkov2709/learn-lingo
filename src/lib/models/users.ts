@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const namePattern = /^[a-zA-Z0-9]*$/;
 const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const passwordPattern =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$|^\$2[aby]\$[0-9]{2}\$[./A-Za-z0-9]{53}$/;
 
 const userSchema = new Schema(
   {

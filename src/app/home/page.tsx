@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { useAppSelector } from "@/redux/hooks";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import BtnLink from "@/components/btn-link";
 import yellow from "../../../public/images/hero/yellow.png";
@@ -10,6 +9,7 @@ import green from "../../../public/images/hero/green.png";
 import blue from "../../../public/images/hero/blue.png";
 import pink from "../../../public/images/hero/pink.png";
 import peach from "../../../public/images/hero/peach.png";
+import useAllSelectors from "@/utils/useAllSelectors";
 
 const images = {
   yellow: yellow,
@@ -20,7 +20,7 @@ const images = {
 };
 
 export default function Home() {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+  const { currentTheme } = useAllSelectors();
 
   return (
     <main>
@@ -84,5 +84,3 @@ export default function Home() {
     </main>
   );
 }
-
-// VPHG2Qx9yfb9RGx4;

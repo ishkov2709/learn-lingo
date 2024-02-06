@@ -13,10 +13,12 @@ interface Pagination {
   limit?: number;
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
+    await connect();
+
     const searchParams: IterableIterator<[string, string]> =
-      request.nextUrl.searchParams.entries();
+      req.nextUrl.searchParams.entries();
 
     const query: Query = {};
     const paginaton: Pagination = {};
@@ -32,8 +34,6 @@ export async function GET(request: NextRequest) {
           ? paginaton.limit * Number(el[1])
           : Number(el[1]));
     });
-
-    await connect();
     const teachers = await Teacher.find(query, {}, paginaton);
 
     return NextResponse.json(teachers, { status: 200 });

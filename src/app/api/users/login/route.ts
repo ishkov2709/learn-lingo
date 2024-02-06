@@ -44,5 +44,8 @@ export async function POST(req: NextRequest) {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   await User.findByIdAndUpdate(user._id, { token });
 
-  return NextResponse.json({ email, token }, { status: 200 });
+  return NextResponse.json(
+    { token, user: { id: user._id, name: user.name, email } },
+    { status: 200 }
+  );
 }

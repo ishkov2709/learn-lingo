@@ -16,6 +16,7 @@ const { HOST_EMAIL, BASE_URL } = process.env;
 
 export async function POST(req: NextRequest) {
   await connect();
+
   const body: RegisterBody = await req.json();
 
   const { error } = registerSchema.validate(body);

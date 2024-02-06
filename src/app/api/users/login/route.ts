@@ -1,25 +1,48 @@
 import connect from "@/lib/utils";
 import HttpError from "@/lib/helpers/HttpError";
-import { User, registerSchema } from "@/lib/models/users";
+import { User, loginSchema } from "@/lib/models/users";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-export interface RegisterBody {
-  name: string;
+export interface LoginBody {
   email: string;
   password: string;
 }
 
+export interface UserData {
+  _id: string;
+  name: string;
+  email: string;
+  password: string;
+  token: null | string;
+  verify: boolean;
+  verificationToken: string;
+}
+
+const { SECRET_KEY = "" } = process.env;
+
 export async function POST(req: NextRequest) {
   await connect();
-  const body: RegisterBody = await req.json();
+  const { email, password }: LoginBody = await req.json();
+  const user: Readonly<UserData> | null = await User.findOne({
+    email,
+  });
 
-  const { error } = registerSchema.validate(body);
-  if (error) return HttpError(error?.message, 404);
-  const usedEmail = await User.findOne({ email: body.email });
-  if (usedEmail) return HttpError("Email in use", 409);
+  if (!user) return HttpError("Email or password is wrong", 401);
+  if (!user.verify) return HttpError("Email not verify", 401);
 
-  const hashPassword = await bcrypt.hash(body.password, 10);
-  const newUser = await User.create({ ...body, password: hashPassword });
-  return NextResponse.json(newUser, { status: 201 });
+  const { error } = loginSchema.validate({ email, password });
+  if (error) return HttpError(error?.message, 401);
+
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) return HttpError("Email or password is wrong", 401);
+
+  const payload = {
+    id: user._id,
+  };
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+  await User.findByIdAndUpdate(user._id, { token });
+
+  return NextResponse.json({ email, token }, { status: 200 });
 }

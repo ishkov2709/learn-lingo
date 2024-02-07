@@ -1,14 +1,18 @@
 "use client";
 
-import { Field, Form, Formik, FormikHelpers } from "formik";
-import styles from "./styles.module.css";
-import { FaRegEye } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
-import { useAppSelector } from "@/redux/hooks";
 import clsx from "clsx";
+import styles from "./styles.module.css";
+import useAllSelectors from "@/utils/useAllSelectors";
+import { FaRegEye } from "react-icons/fa";
+import { registerUser } from "@/redux/user/thunk";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { registerSchema } from "@/utils/validationSchemas";
+import { useAppDispatch } from "@/redux/hooks";
+import { useEffect, useState } from "react";
+import { notifyError, notifySuccess } from "@/utils/notify";
+import { Field, Form, Formik, FormikHelpers } from "formik";
 
-interface Values {
+export interface RegisterValues {
   name: string;
   email: string;
   password: string;
@@ -16,7 +20,19 @@ interface Values {
 
 export default function RegisterForm() {
   const [isShow, setShow] = useState<boolean>(false);
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+  const { currentTheme } = useAllSelectors();
+  const dispatch = useAppDispatch();
+  const {
+    user: { email, error, success },
+  } = useAllSelectors();
+
+  useEffect(() => {
+    if (email && success) notifySuccess(email);
+  }, [email, success]);
+
+  useEffect(() => {
+    if (error) notifyError();
+  }, [error]);
 
   return (
     <div className={styles.formWrapper}>
@@ -31,66 +47,76 @@ export default function RegisterForm() {
           email: "",
           password: "",
         }}
+        validationSchema={registerSchema}
         onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
+          values: RegisterValues,
+          { setSubmitting }: FormikHelpers<RegisterValues>
         ) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
+          dispatch(registerUser(values));
+
+          setSubmitting(true);
         }}
       >
-        <Form>
-          <label className={styles.label}>
-            <Field
-              className={styles.field}
-              id="name"
-              name="name"
-              placeholder="Name"
-            />
-          </label>
-
-          <label className={styles.label}>
-            <Field
-              className={styles.field}
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-            />
-          </label>
-
-          <label className={styles.label}>
-            {isShow ? (
-              <FaRegEye
-                size={20}
-                className={styles.showIcon}
-                onClick={() => setShow(!isShow)}
-              />
-            ) : (
-              <FaRegEyeSlash
-                size={20}
-                className={styles.showIcon}
-                onClick={() => setShow(!isShow)}
-              />
+        {({ errors, touched }) => (
+          <Form>
+            {errors.name && touched.name && (
+              <p className={styles.textError}>{errors.name}</p>
             )}
-            <Field
-              className={styles.field}
-              id="password"
-              name="password"
-              type={isShow ? "text" : "password"}
-              placeholder="Password"
-            />
-          </label>
+            <label className={styles.label}>
+              <Field
+                className={styles.field}
+                id="name"
+                name="name"
+                placeholder="Name"
+              />
+            </label>
+            {errors.email && touched.email && (
+              <p className={styles.textError}>{errors.email}</p>
+            )}
+            <label className={styles.label}>
+              <Field
+                className={styles.field}
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+              />
+            </label>
+            {errors.password && touched.password && (
+              <p className={styles.textError}>{errors.password}</p>
+            )}
+            <label className={styles.label}>
+              {isShow ? (
+                <FaRegEye
+                  size={20}
+                  className={styles.showIcon}
+                  onClick={() => setShow(!isShow)}
+                />
+              ) : (
+                <FaRegEyeSlash
+                  size={20}
+                  className={styles.showIcon}
+                  onClick={() => setShow(!isShow)}
+                />
+              )}
+              <Field
+                className={styles.field}
+                id="password"
+                name="password"
+                type={isShow ? "text" : "password"}
+                placeholder="Password"
+              />
+            </label>
 
-          <button
-            className={clsx(styles.btnSubmit, styles[currentTheme])}
-            type="submit"
-          >
-            Sign Up
-          </button>
-        </Form>
+            <button
+              className={clsx(styles.btnSubmit, styles[currentTheme])}
+              type="submit"
+              disabled={Boolean(errors.name || errors.email || errors.password)}
+            >
+              Sign Up
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   );

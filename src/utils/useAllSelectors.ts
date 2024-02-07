@@ -7,6 +7,7 @@ const useAllSelectors = () => {
   const error = useAppSelector((state) => state.teachers.error);
   const isLoading = useAppSelector((state) => state.teachers.isLoading);
   const pagination = useAppSelector((state) => state.teachers.pagination);
+  const user = useAppSelector((state) => state.user);
 
   return {
     currentTheme,
@@ -15,6 +16,7 @@ const useAllSelectors = () => {
     error,
     isLoading,
     pagination,
+    user,
   };
 };
 

@@ -5,7 +5,8 @@ import styles from "./styles.module.css";
 import { useAppSelector } from "@/redux/hooks";
 import { FiBookOpen } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
+
 import Link from "next/link";
 
 export interface TeacherProps {
@@ -21,6 +22,7 @@ export interface TeacherProps {
   lessons_done: number;
   rating: number;
   price_per_hour: number;
+  followers?: string[];
 }
 
 const Card = ({ data }: { data: TeacherProps }) => {
@@ -86,7 +88,7 @@ const Card = ({ data }: { data: TeacherProps }) => {
           </p>
 
           <button className={styles.favBtn} type="button">
-            <CiHeart size={26} color="#121417" />
+            <FaRegHeart size={26} color="#121417" />
           </button>
         </div>
       </div>

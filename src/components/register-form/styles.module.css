@@ -72,6 +72,13 @@
   transition: background-color 250ms ease-in-out;
 }
 
+.btnSubmit:disabled {
+  background-color: var(--subtitle-card-color);
+  color: var(--primary-black-color);
+
+  pointer-events: none;
+}
+
 .yellow {
   background-color: var(--primary-yellow-color);
 }
@@ -110,4 +117,12 @@
 
 .peach:hover {
   background-color: var(--secondary-peach-color);
+}
+
+.textError {
+  margin-bottom: 4px;
+
+  color: #f62c2c;
+
+  font-size: 14px;
 }

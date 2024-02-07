@@ -1,4 +1,4 @@
-import Joi, { boolean } from "joi";
+import Joi from "joi";
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;

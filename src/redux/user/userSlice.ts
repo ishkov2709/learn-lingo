@@ -23,8 +23,6 @@ const userSlice = createSlice({
         }
       )
       .addCase(registerUser.rejected, (state, { payload }) => {
-        console.log(payload);
-
         state.error = payload;
         state.isLoading = false;
       }),

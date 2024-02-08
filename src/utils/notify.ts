@@ -1,7 +1,7 @@
 import { Bounce, toast } from "react-toastify";
 
-export const notifyError = () =>
-  toast.error("An error occurred during registration, please try again", {
+export const notifyError = (error: string) =>
+  toast.error(error, {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,

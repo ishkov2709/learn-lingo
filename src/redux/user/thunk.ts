@@ -1,5 +1,6 @@
 import { RegisterValues } from "@/components/register-form/register-form";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Error } from "mongoose";
 
 export const registerUser = createAsyncThunk(
   "user/register",
@@ -14,11 +15,14 @@ export const registerUser = createAsyncThunk(
       });
 
       const res = await data.json();
-      if (data.status !== 201) throw thunkAPI.rejectWithValue(res.message);
+      if (data.status !== 201) throw new Error(res.message);
 
       return res;
     } catch (error: unknown) {
-      return thunkAPI.rejectWithValue(error);
+      if (error instanceof Error) {
+        const { message }: { message: string } = error;
+        return thunkAPI.rejectWithValue(message);
+      }
     }
   }
 );

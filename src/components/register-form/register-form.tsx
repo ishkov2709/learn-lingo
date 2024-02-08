@@ -22,17 +22,16 @@ export default function RegisterForm() {
   const [isShow, setShow] = useState<boolean>(false);
   const { currentTheme } = useAllSelectors();
   const dispatch = useAppDispatch();
-  const {
-    user: { email, error, success },
-  } = useAllSelectors();
+
+  const { userEmail, userError, userSuccess } = useAllSelectors();
 
   useEffect(() => {
-    if (email && success) notifySuccess(email);
-  }, [email, success]);
+    if (userEmail && userSuccess) notifySuccess(userEmail);
+  }, [userEmail, userSuccess]);
 
   useEffect(() => {
-    if (error) notifyError();
-  }, [error]);
+    if (typeof userError === "string") notifyError(userError);
+  }, [userError]);
 
   return (
     <div className={styles.formWrapper}>
@@ -50,11 +49,11 @@ export default function RegisterForm() {
         validationSchema={registerSchema}
         onSubmit={(
           values: RegisterValues,
-          { setSubmitting }: FormikHelpers<RegisterValues>
+          { resetForm }: FormikHelpers<RegisterValues>
         ) => {
           dispatch(registerUser(values));
 
-          setSubmitting(true);
+          // resetForm();
         }}
       >
         {({ errors, touched }) => (

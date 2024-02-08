@@ -10,7 +10,6 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
-  list: React.ReactNode;
 }>) {
   return (
     <>

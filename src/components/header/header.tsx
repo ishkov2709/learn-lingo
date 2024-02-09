@@ -10,11 +10,17 @@ import ThemesSelector from "../themes-selector";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
 
 const Header = () => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
   const pathname = usePathname();
   const [segmentPath, setSegmentPath] = useState<string>("");
+
+  useEffect(() => {
+    const token = getCookie("user-token");
+    console.log(token);
+  });
 
   useEffect(() => {
     const arrayPath = pathname.split("/").filter((el) => el !== "");

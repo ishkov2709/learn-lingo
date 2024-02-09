@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import StoreProvider from "./provider";
 import "./globals.css";
 import Header from "@/components/header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default function RootLayout({
         <StoreProvider>
           <Header />
           {children}
+          <ToastContainer />
         </StoreProvider>
       </body>
     </html>

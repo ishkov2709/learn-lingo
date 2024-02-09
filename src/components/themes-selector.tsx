@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import chroma from "chroma-js";
 import { GroupBase, StylesConfig } from "react-select";
 import dynamic from "next/dynamic";
 import { useAppDispatch } from "@/redux/hooks";
 import { setTheme } from "@/redux/themes/themesSlice";
 import { Theme } from "@/redux/themes/initialState";
+import useAllSelectors from "@/utils/useAllSelectors";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
@@ -97,6 +98,14 @@ const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
 
 const ThemesSelector = () => {
   const dispatch = useAppDispatch();
+  const { currentTheme } = useAllSelectors();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const theme = (localStorage.getItem("theme") as Theme) ?? currentTheme;
+      dispatch(setTheme(theme));
+    }
+  });
 
   const handleChange = (newValue: unknown) => {
     const theme = newValue as Readonly<ColourOption>;
@@ -107,7 +116,7 @@ const ThemesSelector = () => {
   return (
     <div className="w-72 flex justify-center">
       <Select
-        defaultValue={colourOptions[0]}
+        defaultValue={colourOptions.find(({ value }) => value === currentTheme)}
         options={colourOptions}
         styles={colourStyles}
         onChange={handleChange}

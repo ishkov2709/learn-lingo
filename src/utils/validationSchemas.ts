@@ -22,3 +22,14 @@ export const registerSchema = Yup.object({
     )
     .required(),
 });
+
+export const loginSchema = Yup.object({
+  email: Yup.string().matches(emailPattern, "email is not valid").required(),
+  password: Yup.string()
+    .min(6, "password must be at least 6 characters long")
+    .matches(
+      passwordPattern,
+      "password must contain uppercase and lowercase Latin letters, numbers and special characters"
+    )
+    .required(),
+});

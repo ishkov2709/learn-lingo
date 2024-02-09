@@ -1,6 +1,4 @@
 import RegisterForm from "@/components/register-form";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export interface PageProps {}
 
@@ -10,7 +8,6 @@ export default function Page() {
       <section className="py-10">
         <RegisterForm />
       </section>
-      <ToastContainer />
     </main>
   );
 }

@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "./initialState";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Theme, initialState } from "./initialState";
 
 const themesSlice = createSlice({
   name: "themes",
   initialState: initialState,
   reducers: {
-    setTheme: (state, { payload }) => {
+    setTheme: (state, { payload }: PayloadAction<Theme>) => {
       state.currentTheme = payload;
+      localStorage.setItem("theme", payload);
     },
   },
 });

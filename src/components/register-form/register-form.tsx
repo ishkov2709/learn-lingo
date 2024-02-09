@@ -11,6 +11,8 @@ import { useAppDispatch } from "@/redux/hooks";
 import { useEffect, useState } from "react";
 import { notifyError, notifySuccess } from "@/utils/notify";
 import { Field, Form, Formik, FormikHelpers } from "formik";
+import { resetStates } from "@/redux/user/userSlice";
+import { redirect } from "next/navigation";
 
 export interface RegisterValues {
   name: string;
@@ -26,12 +28,19 @@ export default function RegisterForm() {
   const { userEmail, userError, userSuccess } = useAllSelectors();
 
   useEffect(() => {
-    if (userEmail && userSuccess) notifySuccess(userEmail);
-  }, [userEmail, userSuccess]);
+    if (userEmail && userSuccess) {
+      notifySuccess(userEmail);
+      dispatch(resetStates());
+      redirect("/login");
+    }
+  }, [userEmail, userSuccess, dispatch]);
 
   useEffect(() => {
-    if (typeof userError === "string") notifyError(userError);
-  }, [userError]);
+    if (typeof userError === "string") {
+      notifyError(userError);
+      dispatch(resetStates());
+    }
+  }, [userError, dispatch]);
 
   return (
     <div className={styles.formWrapper}>
@@ -53,7 +62,7 @@ export default function RegisterForm() {
         ) => {
           dispatch(registerUser(values));
 
-          // resetForm();
+          resetForm();
         }}
       >
         {({ errors, touched }) => (

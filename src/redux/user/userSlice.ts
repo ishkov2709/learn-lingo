@@ -1,23 +1,13 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./thunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { currentUser, loginUser, logoutUser, registerUser } from "./thunk";
 import { initialState } from "./initialState";
-import { RegisterValues } from "@/components/register-form/register-form";
-import { setCookie } from "cookies-next";
-
-interface LoginResponse {
-  token: string;
-  user: {
-    id: string;
-    email: string;
-    name: string;
-  };
-}
-
-const setAuthCookie = (token: string, name: string) => {
-  setCookie(name, token, {
-    path: "/",
-  });
-};
+import {
+  loginUserFulfilled,
+  logoutUserFulfilled,
+  registerUserFulfilled,
+  userPending,
+  userRejected,
+} from "./operations";
 
 const userSlice = createSlice({
   name: "user",
@@ -30,49 +20,19 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(registerUser.pending, (state) => {
-        state.error = null;
-        state.success = null;
-        state.isLoading = true;
-      })
-      .addCase(
-        registerUser.fulfilled,
-        (state, { payload }: PayloadAction<Partial<RegisterValues>>) => {
-          state.success = true;
-          state.isLoading = false;
-          state.email = payload.email;
-        }
+      .addCase(registerUser.fulfilled, registerUserFulfilled)
+      .addCase(logoutUser.fulfilled, logoutUserFulfilled)
+      .addMatcher(
+        isAnyOf(registerUser.pending, loginUser.pending, currentUser.pending),
+        userPending
       )
-      .addCase(
-        registerUser.rejected,
-        (state, { payload }: PayloadAction<string | null | unknown>) => {
-          state.error = payload;
-          state.isLoading = false;
-        }
+      .addMatcher(
+        isAnyOf(loginUser.fulfilled, currentUser.fulfilled),
+        loginUserFulfilled
       )
-      .addCase(loginUser.pending, (state) => {
-        state.error = null;
-        state.success = null;
-        state.isLoading = true;
-      })
-      .addCase(
-        loginUser.fulfilled,
-        (state, { payload }: PayloadAction<LoginResponse>) => {
-          state.isLoading = false;
-          state.token = payload.token;
-          state.id = payload.user.id;
-          state.email = payload.user.email;
-          state.name = payload.user.name;
-          state.success = true;
-
-          setAuthCookie(payload.token, "user-token");
-        }
-      )
-      .addCase(
-        loginUser.rejected,
-        (state, { payload }: PayloadAction<string | null | unknown>) => {
-          state.error = payload;
-        }
+      .addMatcher(
+        isAnyOf(registerUser.rejected, loginUser.rejected),
+        userRejected
       ),
 });
 

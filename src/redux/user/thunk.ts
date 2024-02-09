@@ -51,3 +51,38 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const currentUser = createAsyncThunk(
+  "user/current",
+  async (token: string) => {
+    const data = await fetch("/api/users/current", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    return await data.json();
+  }
+);
+
+interface UserState {
+  user: {
+    id: string;
+  };
+}
+
+export const logoutUser = createAsyncThunk(
+  "user/logout",
+  async (_, thunkAPI) => {
+    const { user } = thunkAPI.getState() as UserState;
+
+    await fetch("/api/users/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "applicatios/json",
+      },
+      body: JSON.stringify({ id: user.id }),
+    });
+  }
+);

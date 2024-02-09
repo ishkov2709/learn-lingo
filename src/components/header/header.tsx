@@ -2,21 +2,16 @@
 
 import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
-import styles from "./styles.module.css";
 import Link from "next/link";
-import { LuLogIn } from "react-icons/lu";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import styles from "./styles.module.css";
+import AuthBtns from "../auth-btns/auth-btns";
 import ThemesSelector from "../themes-selector";
-import { themeSwitcher } from "@/utils/themeSwitcher";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getCookie } from "cookies-next";
+import { useAppDispatch } from "@/redux/hooks";
 import { currentUser, logoutUser } from "@/redux/user/thunk";
 
 const Header = () => {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
-  const pathname = usePathname();
-  const [segmentPath, setSegmentPath] = useState<string>("");
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,17 +19,6 @@ const Header = () => {
     token && dispatch(currentUser(token));
     dispatch(logoutUser());
   }, [dispatch]);
-
-  useEffect(() => {
-    const arrayPath = pathname.split("/").filter((el) => el !== "");
-    setSegmentPath(
-      !arrayPath.includes("login") &&
-        !arrayPath.includes("register") &&
-        arrayPath.length === 1
-        ? pathname
-        : ""
-    );
-  }, [pathname]);
 
   return (
     <header>
@@ -63,30 +47,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <ul className={styles.authList}>
-          <li>
-            <Link
-              className={styles.loginLink}
-              scroll={false}
-              href={segmentPath + "/login"}
-            >
-              <LuLogIn
-                color={themeSwitcher(currentTheme).primaryColor}
-                size={20}
-              />
-              Log in
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={styles.registerLink}
-              scroll={false}
-              href={segmentPath + "/register"}
-            >
-              Registration
-            </Link>
-          </li>
-        </ul>
+        <AuthBtns />
       </div>
     </header>
   );

@@ -33,48 +33,4 @@
   color: var(--secondary-black-color);
 }
 
-.authList {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
 
-  font-weight: 700;
-}
-
-.loginLink {
-  width: 81px;
-
-  padding: 14px 0;
-
-  display: inline-flex;
-  justify-content: flex-end;
-  gap: 14px;
-
-  transition: gap 250ms ease-in-out, color 250ms ease-in-out;
-}
-
-.loginLink:hover,
-.loginLink:focus {
-  gap: 8px;
-
-  color: var(--secondary-black-color);
-}
-
-.registerLink {
-  padding: 14px 39px;
-
-  background-color: var(--primary-black-color);
-  color: var(--primary-white-color);
-
-  border-radius: 12px;
-
-  transition: background-color 250ms ease-in-out,
-    border-radius 250ms ease-in-out;
-}
-
-.registerLink:hover,
-.registerLink:focus {
-  background-color: var(--secondary-black-color);
-
-  border-radius: 24px;
-}

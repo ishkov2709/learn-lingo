@@ -84,5 +84,7 @@ export const logoutUser = createAsyncThunk(
       },
       body: JSON.stringify({ id: user.id }),
     });
+
+    return;
   }
 );

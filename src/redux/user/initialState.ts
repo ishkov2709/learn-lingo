@@ -6,6 +6,7 @@ export interface InitialState {
   error: string | null | unknown;
   success: boolean | null;
   isLoading: boolean;
+  isRefreshing: boolean;
 }
 
 export const initialState: InitialState = {
@@ -16,4 +17,5 @@ export const initialState: InitialState = {
   error: null,
   success: null,
   isLoading: false,
+  isRefreshing: false,
 };

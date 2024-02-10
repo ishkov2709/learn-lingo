@@ -1,0 +1,27 @@
+.list {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  font-weight: 700;
+}
+
+.logoutBtn {
+  width: 90px;
+
+  padding: 14px 0;
+
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+
+  transition: gap 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  gap: 14px;
+
+  color: var(--secondary-black-color);
+}

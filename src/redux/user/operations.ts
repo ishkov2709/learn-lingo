@@ -50,7 +50,7 @@ export const loginUserFulfilled = (
   state.id = payload.user.id;
   state.email = payload.user.email;
   state.name = payload.user.name;
-  state.success = true;
+  state.isRefreshing = true;
 
   setAuthCookie(payload.token, "user-token");
 };

@@ -12,6 +12,7 @@ const useAllSelectors = () => {
   const userEmail = useAppSelector((state) => state.user.email);
   const userSuccess = useAppSelector((state) => state.user.success);
   const userToken = useAppSelector((state) => state.user.token);
+  const isRefreshing = useAppSelector((state) => state.user.isRefreshing);
 
   return {
     currentTheme,
@@ -25,6 +26,7 @@ const useAllSelectors = () => {
     userEmail,
     userSuccess,
     userToken,
+    isRefreshing,
   };
 };
 

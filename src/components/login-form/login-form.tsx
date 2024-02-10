@@ -6,7 +6,7 @@ import { FaRegEye } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { loginSchema } from "@/utils/validationSchemas";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { loginUser } from "@/redux/user/thunk";
 import useAllSelectors from "@/utils/useAllSelectors";
@@ -21,16 +21,12 @@ export interface LoginValues {
 
 export default function LoginForm() {
   const [isShow, setShow] = useState<boolean>(false);
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
   const dispatch = useAppDispatch();
-  const { userError, userSuccess } = useAllSelectors();
+  const { userToken, userError, currentTheme } = useAllSelectors();
 
   useEffect(() => {
-    if (userSuccess) {
-      dispatch(resetStates());
-      redirect("/");
-    }
-  }, [userSuccess, dispatch]);
+    if (userToken) redirect("/");
+  }, [userToken, dispatch]);
 
   useEffect(() => {
     if (typeof userError === "string") {
@@ -59,6 +55,8 @@ export default function LoginForm() {
           dispatch(loginUser(values));
 
           resetForm();
+
+          dispatch(resetStates());
         }}
       >
         {({ errors, touched }) => (

@@ -18,20 +18,19 @@ export interface RegisterValues {
   name: string;
   email: string;
   password: string;
+  onClose?: () => void;
 }
 
 export default function RegisterForm() {
   const [isShow, setShow] = useState<boolean>(false);
-  const { currentTheme } = useAllSelectors();
   const dispatch = useAppDispatch();
-
-  const { userEmail, userError, userSuccess } = useAllSelectors();
+  const { userEmail, userError, userSuccess, currentTheme } = useAllSelectors();
 
   useEffect(() => {
-    if (userEmail && userSuccess) {
+    if (userSuccess && userEmail) {
       notifySuccess(userEmail);
       dispatch(resetStates());
-      redirect("/login");
+      redirect("/");
     }
   }, [userEmail, userSuccess, dispatch]);
 

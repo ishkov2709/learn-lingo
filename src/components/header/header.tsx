@@ -4,20 +4,22 @@ import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import AuthBtns from "../auth-btns/auth-btns";
 import ThemesSelector from "../themes-selector";
 import { useEffect } from "react";
 import { getCookie } from "cookies-next";
 import { useAppDispatch } from "@/redux/hooks";
 import { currentUser, logoutUser } from "@/redux/user/thunk";
+import AuthBtns from "../auth-btns/auth-btns";
+import ProfileBtns from "../profile-btns";
+import useAllSelectors from "@/utils/useAllSelectors";
 
 const Header = () => {
   const dispatch = useAppDispatch();
+  const { userToken, isRefreshing } = useAllSelectors();
 
   useEffect(() => {
     const token = getCookie("user-token") ?? "";
     token && dispatch(currentUser(token));
-    dispatch(logoutUser());
   }, [dispatch]);
 
   return (
@@ -29,9 +31,7 @@ const Header = () => {
             <p>LearnLingo</p>
           </span>
         </div>
-
         <ThemesSelector />
-
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li>
@@ -47,7 +47,10 @@ const Header = () => {
           </ul>
         </nav>
 
-        <AuthBtns />
+        <div className="w-24">
+          {isRefreshing && userToken && <ProfileBtns />}
+          {!userToken && <AuthBtns />}
+        </div>
       </div>
     </header>
   );

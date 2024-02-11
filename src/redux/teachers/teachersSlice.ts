@@ -3,10 +3,13 @@ import { initialState } from "./initialState";
 import {
   addToFavorites,
   deleteFromFavorites,
+  getFavorites,
   getNextTeachers,
   getTeachers,
 } from "./thunk";
 import {
+  allFavoritesFulfilled,
+  allFavoritesRejected,
   favoritesFulfilled,
   favoritesPending,
   favoritesRejected,
@@ -46,8 +49,14 @@ const teachersSlice = createSlice({
     builder
       .addCase(getTeachers.fulfilled, getTeachersFulfilled)
       .addCase(getNextTeachers.fulfilled, getNextTeachersFulfilled)
+      .addCase(getFavorites.fulfilled, allFavoritesFulfilled)
+      .addCase(getFavorites.rejected, allFavoritesRejected)
       .addMatcher(
-        isAnyOf(getTeachers.pending, getNextTeachers.pending),
+        isAnyOf(
+          getTeachers.pending,
+          getNextTeachers.pending,
+          getFavorites.pending
+        ),
         getTeachersPending
       )
       .addMatcher(

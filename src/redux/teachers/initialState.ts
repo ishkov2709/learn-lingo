@@ -2,6 +2,7 @@ import { TeacherProps } from "@/components/card/card";
 
 export interface InitialState {
   teachers: TeacherProps[];
+  favorites: TeacherProps[];
   filter: {
     languages: string;
     levels: string;
@@ -17,6 +18,7 @@ export interface InitialState {
 
 export const initialState: InitialState = {
   teachers: [],
+  favorites: [],
   filter: {
     languages: "",
     levels: "",

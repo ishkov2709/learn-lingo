@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { UnknownAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { InitialState } from "./initialState";
 
 interface UserToken {
@@ -99,6 +99,31 @@ export const deleteFromFavorites = createAsyncThunk(
     try {
       const data = await fetch(`/api/teachers/favorites/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + user.token,
+        },
+      });
+      const res = await data.json();
+      if (data.status !== 200) throw new Error(res.message);
+
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const { message } = error;
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+  }
+);
+
+export const getFavorites = createAsyncThunk(
+  "favorites/get",
+  async (_, thunkAPI) => {
+    const { user } = thunkAPI.getState() as UserToken;
+
+    try {
+      const data = await fetch(`/api/teachers/favorites`, {
+        method: "GET",
         headers: {
           Authorization: "Bearer " + user.token,
         },

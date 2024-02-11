@@ -14,10 +14,12 @@ const useAllSelectors = () => {
   const userSuccess = useAppSelector((state) => state.user.success);
   const userToken = useAppSelector((state) => state.user.token);
   const isRefreshing = useAppSelector((state) => state.user.isRefreshing);
+  const favorites = useAppSelector((state) => state.teachers.favorites);
 
   return {
     currentTheme,
     teachers,
+    favorites,
     filter,
     error,
     isLoading,

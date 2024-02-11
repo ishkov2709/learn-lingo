@@ -51,3 +51,20 @@ export const favoritesFulfilled = (
 export const favoritesRejected = (state: InitialState) => {
   state.isLoading = false;
 };
+
+export const allFavoritesFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<TeacherProps[]>
+) => {
+  state.favorites = [...payload];
+  state.isLoading = false;
+};
+
+export const allFavoritesRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | null | unknown>
+) => {
+  state.isLoading = false;
+  state.error = payload;
+  state.favorites = [];
+};

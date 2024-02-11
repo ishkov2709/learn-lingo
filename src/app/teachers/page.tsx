@@ -81,7 +81,7 @@ export default function Teachers() {
                   <Card key={teacher._id} data={teacher} />
                 ))}
               {teachers.length === 0 && !isLoading && error !== null && (
-                <p className="text-center text-3xl ">
+                <p className="text-center text-3xl">
                   No teachers were found matching your request. 😥
                 </p>
               )}

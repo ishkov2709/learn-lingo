@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const namePattern = /^[a-zA-Z0-9]*$/;
-const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const passwordPattern =
+export const namePattern = /^[a-zA-Z0-9]*$/;
+export const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+export const passwordPattern =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$|^\$2[aby]\$[0-9]{2}\$[./A-Za-z0-9]{53}$/;
 
 const userSchema = new Schema(

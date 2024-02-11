@@ -5,131 +5,97 @@ import styles from "./styles.module.css";
 import clsx from "clsx";
 import Image from "next/image";
 import { TeacherProps } from "../card/card";
-import { useAppSelector } from "@/redux/hooks";
+import BookRadios, { Picked } from "../book-radios/book-radios";
+import useAllSelectors from "@/utils/useAllSelectors";
+import { useEffect, useState } from "react";
+import { getTeacher } from "@/utils/getTeacher";
+import { bookLesson } from "@/redux/teachers/thunk";
+import { useAppDispatch } from "@/redux/hooks";
+import { bookSchema } from "@/utils/validationSchemas";
+import { notifyLesson } from "@/utils/notify";
 
-enum Picked {
-  One = "one",
-  Two = "two",
-  Three = "three",
-  Four = "four",
-  Five = "five",
-}
-
-interface Values {
+export interface BookValues {
   picked: Picked | "";
+  fullName: string;
   email: string;
-  password: string;
+  phoneNumber: string;
 }
 
 export default function BookForm({ id }: { id: string }) {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
-  const teachers = useAppSelector((state) => state.teachers.teachers);
-  const teacher: TeacherProps | undefined = teachers.find(
-    (el) => el._id === id
-  );
+  const { currentTheme } = useAllSelectors();
+  const [teacher, setTeacher] = useState<TeacherProps | null>(null);
+  const dispatch = useAppDispatch();
 
-  if (teacher)
-    return (
-      <div className={styles.formWrapper}>
-        <h1 className={styles.title}>Book trial lesson</h1>
-        <p className={styles.text}>
-          Our experienced tutor will assess your current language level, discuss
-          your learning goals, and tailor the lesson to your specific needs.
-        </p>
+  useEffect(() => {
+    (async () => {
+      const res = await getTeacher(id);
+      setTeacher(res);
+    })();
+  }, [id]);
 
-        <div className={styles.teacherBox}>
-          <Image
-            src={teacher.avatar_url}
-            alt={`${teacher.name} ${teacher.surname}`}
-            width={44}
-            height={44}
-            className={styles.teacherPhoto}
-          />
-          <div>
-            <p className={styles.sign}>Your teacher</p>
-            <p className={styles.teachersName}>
-              {`${teacher.name} ${teacher.surname}`}
-            </p>
-          </div>
-        </div>
+  return (
+    <div className={styles.formWrapper}>
+      <h1 className={styles.title}>Book trial lesson</h1>
+      <p className={styles.text}>
+        Our experienced tutor will assess your current language level, discuss
+        your learning goals, and tailor the lesson to your specific needs.
+      </p>
 
-        <Formik
-          initialValues={{
-            picked: "",
-            email: "",
-            password: "",
-          }}
-          onSubmit={(
-            values: Values,
-            { setSubmitting }: FormikHelpers<Values>
-          ) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 500);
-          }}
-        >
+      <div className={styles.teacherBox}>
+        {teacher && (
+          <>
+            <Image
+              src={teacher.avatar_url}
+              alt={`${teacher.name} ${teacher.surname}`}
+              width={44}
+              height={44}
+              className={styles.teacherPhoto}
+            />
+            <div>
+              <p className={styles.sign}>Your teacher</p>
+              <p className={styles.teachersName}>
+                {`${teacher.name} ${teacher.surname}`}
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+
+      <Formik
+        initialValues={{
+          picked: "",
+          fullName: "",
+          email: "",
+          phoneNumber: "",
+        }}
+        validationSchema={bookSchema}
+        onSubmit={(
+          values: BookValues,
+          { resetForm }: FormikHelpers<BookValues>
+        ) => {
+          const bookData = {
+            id,
+            book: {
+              ...values,
+            },
+          };
+          dispatch(bookLesson(bookData));
+          resetForm();
+          notifyLesson();
+        }}
+      >
+        {({ errors, touched }) => (
           <Form>
             <b id="reason-radio-group" className={styles.question}>
               What is your main reason for learning a language?
             </b>
-            <div
-              className={styles.radioBox}
-              role="group"
-              aria-labelledby="reason-radio-group"
-            >
-              <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value={Picked.One} /> Career
-                and business
-                <span
-                  className={clsx(
-                    styles.customRadio,
-                    styles[`${currentTheme}Radio`]
-                  )}
-                ></span>
-              </label>
-              <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value={Picked.Two} /> Lesson
-                for kids
-                <span
-                  className={clsx(
-                    styles.customRadio,
-                    styles[`${currentTheme}Radio`]
-                  )}
-                ></span>
-              </label>
-              <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value={Picked.Three} /> Living
-                abroad
-                <span
-                  className={clsx(
-                    styles.customRadio,
-                    styles[`${currentTheme}Radio`]
-                  )}
-                ></span>
-              </label>
-              <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value={Picked.Four} /> Exams
-                and coursework
-                <span
-                  className={clsx(
-                    styles.customRadio,
-                    styles[`${currentTheme}Radio`]
-                  )}
-                ></span>
-              </label>
-              <label className={styles.radioLabel}>
-                <Field type="radio" name="picked" value={Picked.Five} />{" "}
-                Culture, travel or hobby
-                <span
-                  className={clsx(
-                    styles.customRadio,
-                    styles[`${currentTheme}Radio`]
-                  )}
-                ></span>
-              </label>
-            </div>
-
+            {errors.picked && touched.picked && (
+              <p className={styles.textError}>{errors.picked}</p>
+            )}
+            <BookRadios />
+            {errors.fullName && touched.fullName && (
+              <p className={styles.textError}>{errors.fullName}</p>
+            )}
             <label className={styles.label}>
               <Field
                 className={styles.field}
@@ -139,6 +105,9 @@ export default function BookForm({ id }: { id: string }) {
                 placeholder="Full Name"
               />
             </label>
+            {errors.email && touched.email && (
+              <p className={styles.textError}>{errors.email}</p>
+            )}
             <label className={styles.label}>
               <Field
                 className={styles.field}
@@ -148,6 +117,9 @@ export default function BookForm({ id }: { id: string }) {
                 placeholder="Email"
               />
             </label>
+            {errors.phoneNumber && touched.phoneNumber && (
+              <p className={styles.textError}>{errors.phoneNumber}</p>
+            )}
             <label className={styles.label}>
               <Field
                 className={styles.field}
@@ -161,11 +133,13 @@ export default function BookForm({ id }: { id: string }) {
             <button
               className={clsx(styles.btnSubmit, styles[currentTheme])}
               type="submit"
+              disabled={Boolean(!teacher)}
             >
               Book
             </button>
           </Form>
-        </Formik>
-      </div>
-    );
+        )}
+      </Formik>
+    </div>
+  );
 }

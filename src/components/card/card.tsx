@@ -32,7 +32,7 @@ export interface TeacherProps {
   rating: number;
   price_per_hour: number;
   reviews?: ReviewTeacher[];
-  followers: string[];
+  followers?: string[];
   favorites?: string[];
 }
 

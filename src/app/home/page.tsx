@@ -46,7 +46,7 @@ export default function Home() {
               connecting with highly qualified and experienced tutors.
             </p>
 
-            <BtnLink href="/">Get started</BtnLink>
+            <BtnLink href="/teachers">Get started</BtnLink>
           </div>
           <Image
             src={images[currentTheme]}

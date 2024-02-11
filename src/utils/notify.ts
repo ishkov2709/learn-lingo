@@ -25,3 +25,16 @@ export const notifySuccess = (email: string) =>
     theme: "colored",
     transition: Zoom,
   });
+
+export const notifyLesson = () =>
+  toast.info("We will soon send you information about the trial lesson!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    transition: Zoom,
+  });

@@ -1,10 +1,10 @@
+import bcrypt from "bcrypt";
 import connect from "@/lib/utils";
 import HttpError from "@/lib/helpers/HttpError";
-import { User, registerSchema } from "@/lib/models/users";
-import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
 import { transporter } from "@/lib/helpers/transporter";
+import { User, registerSchema } from "@/lib/models/users";
+import { NextRequest, NextResponse } from "next/server";
 
 export interface RegisterBody {
   name: string;
@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
 
   const { error } = registerSchema.validate(body);
   if (error) return HttpError(error?.message, 404);
-  const usedEmail = await User.findOne({ email: body.email });
-  if (usedEmail) return HttpError("Email in use", 409);
+  const userEmail = await User.findOne({ email: body.email });
+  if (userEmail) return HttpError("Email in use", 409);
 
   const hashPassword = await bcrypt.hash(body.password, 10);
   const verificationToken = randomUUID();

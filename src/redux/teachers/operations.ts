@@ -32,11 +32,11 @@ export const getTeachersRejected = (
   state.teachers = [];
 };
 
-export const favoritesPending = (state: InitialState) => {
+export const updateTeachersPending = (state: InitialState) => {
   state.isLoading = true;
 };
 
-export const favoritesFulfilled = (
+export const updateTeachersFulfilled = (
   state: InitialState,
   { payload }: PayloadAction<TeacherProps>
 ) => {
@@ -48,7 +48,7 @@ export const favoritesFulfilled = (
   ];
 };
 
-export const favoritesRejected = (state: InitialState) => {
+export const updateTeachersRejected = (state: InitialState) => {
   state.isLoading = false;
 };
 

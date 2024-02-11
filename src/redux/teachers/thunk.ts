@@ -1,10 +1,16 @@
-import { UnknownAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { InitialState } from "./initialState";
+import { BookValues } from "@/components/book-form/book-form";
 
-interface UserToken {
+export interface UserToken {
   user: {
     token: string | null;
   };
+}
+
+export interface BookParams {
+  id: string;
+  book: BookValues;
 }
 
 export const getTeachers = createAsyncThunk(
@@ -130,6 +136,33 @@ export const getFavorites = createAsyncThunk(
       });
       const res = await data.json();
       if (data.status !== 200) throw new Error(res.message);
+
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const { message } = error;
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
+  }
+);
+
+export const bookLesson = createAsyncThunk(
+  "lesson/book",
+  async ({ id, book }: BookParams, thunkAPI) => {
+    const { user } = thunkAPI.getState() as UserToken;
+
+    try {
+      const data = await fetch(`/api/teachers/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + user.token,
+        },
+        body: JSON.stringify(book),
+      });
+
+      const res = await data.json();
+      if (data.status !== 201) throw new Error(res.message);
 
       return res;
     } catch (error: unknown) {

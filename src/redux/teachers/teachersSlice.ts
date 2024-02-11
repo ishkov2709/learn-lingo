@@ -1,7 +1,15 @@
 import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
-import { getNextTeachers, getTeachers } from "./thunk";
 import {
+  addToFavorites,
+  deleteFromFavorites,
+  getNextTeachers,
+  getTeachers,
+} from "./thunk";
+import {
+  favoritesFulfilled,
+  favoritesPending,
+  favoritesRejected,
   getNextTeachersFulfilled,
   getTeachersFulfilled,
   getTeachersPending,
@@ -45,6 +53,18 @@ const teachersSlice = createSlice({
       .addMatcher(
         isAnyOf(getTeachers.rejected, getNextTeachers.rejected),
         getTeachersRejected
+      )
+      .addMatcher(
+        isAnyOf(addToFavorites.pending, deleteFromFavorites.pending),
+        favoritesPending
+      )
+      .addMatcher(
+        isAnyOf(addToFavorites.fulfilled, deleteFromFavorites.fulfilled),
+        favoritesFulfilled
+      )
+      .addMatcher(
+        isAnyOf(addToFavorites.rejected, deleteFromFavorites.rejected),
+        favoritesRejected
       ),
 });
 

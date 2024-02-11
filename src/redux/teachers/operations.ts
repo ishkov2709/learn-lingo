@@ -31,3 +31,23 @@ export const getTeachersRejected = (
   state.error = payload;
   state.teachers = [];
 };
+
+export const favoritesPending = (state: InitialState) => {
+  state.isLoading = true;
+};
+
+export const favoritesFulfilled = (
+  state: InitialState,
+  { payload }: PayloadAction<TeacherProps>
+) => {
+  state.isLoading = false;
+  state.teachers = [
+    ...state.teachers.map((teacher) =>
+      teacher._id === payload._id ? payload : teacher
+    ),
+  ];
+};
+
+export const favoritesRejected = (state: InitialState) => {
+  state.isLoading = false;
+};

@@ -27,7 +27,6 @@ const FiltersForm = dynamic(() => import("../../components/filters-form"), {
 
 export default function Teachers() {
   const { teachers, filter, pagination, isLoading, error } = useAllSelectors();
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {

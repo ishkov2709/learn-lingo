@@ -68,7 +68,7 @@ export const getNextTeachers = createAsyncThunk(
 
 export const addToFavorites = createAsyncThunk(
   "teachers/add",
-  async (id, thunkAPI) => {
+  async (id: string | null, thunkAPI) => {
     const { user } = thunkAPI.getState() as UserToken;
 
     try {
@@ -93,7 +93,7 @@ export const addToFavorites = createAsyncThunk(
 
 export const deleteFromFavorites = createAsyncThunk(
   "teachers/delete",
-  async (id, thunkAPI) => {
+  async (id: string | null, thunkAPI) => {
     const { user } = thunkAPI.getState() as UserToken;
 
     try {

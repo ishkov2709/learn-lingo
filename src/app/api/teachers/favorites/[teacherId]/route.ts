@@ -38,7 +38,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       { new: true }
     );
 
-    return NextResponse.json({ ...newTeacher });
+    return NextResponse.json({ ...newTeacher._doc });
   } catch (error: unknown) {
     if (error instanceof Error) {
       const { message } = error;
@@ -72,7 +72,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
       { new: true }
     );
 
-    return NextResponse.json({ ...newTeacher });
+    return NextResponse.json({ ...newTeacher._doc });
   } catch (error: unknown) {
     if (error instanceof Error) {
       const { message } = error;

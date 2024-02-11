@@ -51,6 +51,7 @@ const teacherSchema = new Schema(
     },
     favorites: {
       type: Array,
+      default: [],
     },
   },
   { timestamps: false }

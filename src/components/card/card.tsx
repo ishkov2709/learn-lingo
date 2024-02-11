@@ -4,11 +4,13 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { FiBookOpen } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useState } from "react";
 import useAllSelectors from "@/utils/useAllSelectors";
 import clsx from "clsx";
 import BtnLink from "../btn-link";
+import { useAppDispatch } from "@/redux/hooks";
+import { addToFavorites, deleteFromFavorites } from "@/redux/teachers/thunk";
 
 export interface ReviewTeacher {
   comment: string;
@@ -29,20 +31,49 @@ export interface TeacherProps {
   lessons_done: number;
   rating: number;
   price_per_hour: number;
+  reviews?: ReviewTeacher[];
   followers: string[];
-  reviews: ReviewTeacher[];
   favorites?: string[];
 }
 
-const Card = ({ data }: { data: TeacherProps }) => {
-  const { currentTheme, userToken } = useAllSelectors();
+const Card = ({
+  data: {
+    _id,
+    avatar_url,
+    name,
+    surname,
+    languages,
+    lesson_info,
+    conditions,
+    experience,
+    levels,
+    lessons_done,
+    rating,
+    price_per_hour,
+    reviews,
+    followers,
+    favorites,
+  },
+}: {
+  data: TeacherProps;
+}) => {
+  const { currentTheme, isLoading, userToken, userId } = useAllSelectors();
   const [isShow, setShow] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const handleAdd = () => {
+    dispatch(addToFavorites(_id));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteFromFavorites(_id));
+  };
 
   return (
     <li className={styles.cardItem}>
       <Image
         className={clsx(styles.avatar, styles[currentTheme + "Border"])}
-        src={data.avatar_url}
+        src={avatar_url}
         alt="teacher"
         width={96}
         height={96}
@@ -52,20 +83,19 @@ const Card = ({ data }: { data: TeacherProps }) => {
         <p className={styles.subtitleText}>
           Languages{" "}
           <span className={styles.name}>
-            {data.name} {data.surname}
+            {name} {surname}
           </span>
         </p>
         <p className={styles.subtitleText}>
           Speaks:{" "}
-          <span className={styles.aboutText}>{data.languages.join(" ")}</span>
+          <span className={styles.aboutText}>{languages.join(" ")}</span>
         </p>
         <p className={styles.subtitleText}>
-          Lesson Info:{" "}
-          <span className={styles.aboutText}>{data.lesson_info}</span>
+          Lesson Info: <span className={styles.aboutText}>{lesson_info}</span>
         </p>
         <p className={clsx(styles.subtitleText, styles.last)}>
           Conditions:{" "}
-          <span className={styles.aboutText}>{data.conditions.join(" ")}</span>
+          <span className={styles.aboutText}>{conditions.join(" ")}</span>
         </p>
 
         {!isShow ? (
@@ -78,11 +108,11 @@ const Card = ({ data }: { data: TeacherProps }) => {
           </button>
         ) : (
           <>
-            <p className={styles.experience}>{data.experience}</p>
+            <p className={styles.experience}>{experience}</p>
 
-            {data.reviews.length > 0 && (
+            {reviews && reviews.length > 0 && (
               <ul>
-                {data.reviews.map((review, i) => (
+                {reviews.map((review, i) => (
                   <li key={i} className={styles.reviewItem}>
                     <p className={styles.reviewName}>{review.reviewer_name}</p>
                     <p className={styles.reviewRating}>
@@ -98,7 +128,7 @@ const Card = ({ data }: { data: TeacherProps }) => {
         )}
 
         <ul className={styles.levelList}>
-          {data.levels.map((el, i) => (
+          {levels.map((el, i) => (
             <li key={i} className={styles.levelItem}>
               {"#" + el}
             </li>
@@ -106,7 +136,7 @@ const Card = ({ data }: { data: TeacherProps }) => {
         </ul>
 
         {userToken && (
-          <BtnLink href={`/teachers/${data._id}`} className="mt-8">
+          <BtnLink href={`/teachers/${_id}`} className="mt-8">
             Book trial lesson
           </BtnLink>
         )}
@@ -115,18 +145,35 @@ const Card = ({ data }: { data: TeacherProps }) => {
           <p className={styles.extraText}>
             <FiBookOpen size={16} color="inherit" /> Lessons online
           </p>
-          <p className={styles.extraText}>Lessons done: {data.lessons_done}</p>
+          <p className={styles.extraText}>Lessons done: {lessons_done}</p>
           <p className={styles.extraText}>
-            <FaStar size={16} color="#FFC531" /> Rating: {data.rating}
+            <FaStar size={16} color="#FFC531" /> Rating: {rating}
           </p>
           <p className={styles.extraText}>
             Price / 1 hour:{" "}
-            <span className={styles.price}>{data.price_per_hour}$</span>
+            <span className={styles.price}>{price_per_hour}$</span>
           </p>
 
-          <button className={styles.favBtn} type="button">
-            <FaRegHeart size={24} color="#121417" />
-          </button>
+          {userId && favorites?.includes(userId) && (
+            <button
+              className={styles.favBtn}
+              type="button"
+              onClick={handleDelete}
+              disabled={isLoading}
+            >
+              <FaHeart size={24} color="#121417" />
+            </button>
+          )}
+          {userId && !favorites?.includes(userId) && (
+            <button
+              className={styles.favBtn}
+              type="button"
+              onClick={handleAdd}
+              disabled={isLoading}
+            >
+              <FaRegHeart size={24} color="#121417" />
+            </button>
+          )}
         </div>
       </div>
     </li>

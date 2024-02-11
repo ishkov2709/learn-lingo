@@ -1,3 +1,4 @@
+import Joi from "joi";
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
@@ -48,9 +49,16 @@ const teacherSchema = new Schema(
       type: String,
       required: true,
     },
+    favorites: {
+      type: Array,
+    },
   },
   { timestamps: false }
 );
+
+export const favoriteSchema = Joi.object({
+  id: Joi.string().required(),
+});
 
 export default mongoose.models.Teacher ||
   mongoose.model("Teacher", teacherSchema);

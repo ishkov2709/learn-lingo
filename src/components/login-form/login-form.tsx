@@ -23,9 +23,10 @@ export default function LoginForm() {
   const [isShow, setShow] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const { userToken, userError, currentTheme } = useAllSelectors();
-
   useEffect(() => {
-    if (userToken) redirect("/");
+    if (userToken) {
+      redirect("/");
+    }
   }, [userToken, dispatch]);
 
   useEffect(() => {

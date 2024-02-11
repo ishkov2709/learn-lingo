@@ -1,14 +1,10 @@
 import HttpError from "@/lib/helpers/HttpError";
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { User } from "@/lib/models/users";
 import connect from "@/lib/utils";
 
 const { SECRET_KEY = "" } = process.env;
-
-interface JwtPayload {
-  id: string;
-}
 
 export async function GET(req: NextRequest) {
   const bearerToken = req.headers.get("authorization") ?? "";
@@ -18,7 +14,7 @@ export async function GET(req: NextRequest) {
 
   await connect();
 
-  const { id } = jwt.verify(token, SECRET_KEY) as JwtPayload;
+  const { id } = (await jwt.verify(token, SECRET_KEY)) as JwtPayload;
   const user = await User.findById(id);
 
   const userData = {

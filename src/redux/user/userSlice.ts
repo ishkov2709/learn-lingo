@@ -17,6 +17,9 @@ const userSlice = createSlice({
       state.error = null;
       state.success = false;
     },
+    setRefreshing: (state) => {
+      state.isRefreshing = true;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -38,4 +41,4 @@ const userSlice = createSlice({
 
 export const userReducer = userSlice.reducer;
 
-export const { resetStates } = userSlice.actions;
+export const { resetStates, setRefreshing } = userSlice.actions;

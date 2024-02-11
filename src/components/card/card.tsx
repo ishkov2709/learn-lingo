@@ -2,12 +2,19 @@
 
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { useAppSelector } from "@/redux/hooks";
 import { FiBookOpen } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import { useState } from "react";
+import useAllSelectors from "@/utils/useAllSelectors";
+import clsx from "clsx";
+import BtnLink from "../btn-link";
 
-import Link from "next/link";
+export interface ReviewTeacher {
+  comment: string;
+  reviewer_name: string;
+  reviewer_rating: number;
+}
 
 export interface TeacherProps {
   _id: string;
@@ -22,16 +29,19 @@ export interface TeacherProps {
   lessons_done: number;
   rating: number;
   price_per_hour: number;
-  followers?: string[];
+  followers: string[];
+  reviews: ReviewTeacher[];
+  favorites?: string[];
 }
 
 const Card = ({ data }: { data: TeacherProps }) => {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+  const { currentTheme, userToken } = useAllSelectors();
+  const [isShow, setShow] = useState<boolean>(false);
 
   return (
     <li className={styles.cardItem}>
       <Image
-        className={`${styles.avatar} ${styles[currentTheme + "Border"]}`}
+        className={clsx(styles.avatar, styles[currentTheme + "Border"])}
         src={data.avatar_url}
         alt="teacher"
         width={96}
@@ -53,18 +63,39 @@ const Card = ({ data }: { data: TeacherProps }) => {
           Lesson Info:{" "}
           <span className={styles.aboutText}>{data.lesson_info}</span>
         </p>
-        <p className={styles.subtitleText}>
+        <p className={clsx(styles.subtitleText, styles.last)}>
           Conditions:{" "}
           <span className={styles.aboutText}>{data.conditions.join(" ")}</span>
         </p>
 
-        <Link
-          href={`/teachers/${data._id}`}
-          className={styles.moreBtn}
-          scroll={false}
-        >
-          Read more
-        </Link>
+        {!isShow ? (
+          <button
+            type="button"
+            className={styles.moreBtn}
+            onClick={() => setShow(true)}
+          >
+            Read more
+          </button>
+        ) : (
+          <>
+            <p className={styles.experience}>{data.experience}</p>
+
+            {data.reviews.length > 0 && (
+              <ul>
+                {data.reviews.map((review, i) => (
+                  <li key={i} className={styles.reviewItem}>
+                    <p className={styles.reviewName}>{review.reviewer_name}</p>
+                    <p className={styles.reviewRating}>
+                      <FaStar size={16} color="#FFC531" />
+                      {review.reviewer_rating.toFixed(1)}
+                    </p>
+                    <p>{review.comment}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        )}
 
         <ul className={styles.levelList}>
           {data.levels.map((el, i) => (
@@ -73,6 +104,12 @@ const Card = ({ data }: { data: TeacherProps }) => {
             </li>
           ))}
         </ul>
+
+        {userToken && (
+          <BtnLink href={`/teachers/${data._id}`} className="mt-8">
+            Book trial lesson
+          </BtnLink>
+        )}
 
         <div className={styles.extaInfoWrapper}>
           <p className={styles.extraText}>
@@ -88,7 +125,7 @@ const Card = ({ data }: { data: TeacherProps }) => {
           </p>
 
           <button className={styles.favBtn} type="button">
-            <FaRegHeart size={26} color="#121417" />
+            <FaRegHeart size={24} color="#121417" />
           </button>
         </div>
       </div>

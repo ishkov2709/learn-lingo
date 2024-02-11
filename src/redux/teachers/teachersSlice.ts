@@ -1,6 +1,12 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { initialState } from "./initialState";
 import { getNextTeachers, getTeachers } from "./thunk";
+import {
+  getNextTeachersFulfilled,
+  getTeachersFulfilled,
+  getTeachersPending,
+  getTeachersRejected,
+} from "./operations";
 
 const teachersSlice = createSlice({
   name: "teachers",
@@ -30,31 +36,16 @@ const teachersSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(getTeachers.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(getTeachers.fulfilled, (state, { payload }) => {
-        state.teachers = [...payload];
-        state.isLoading = false;
-      })
-      .addCase(getTeachers.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-        state.teachers = [];
-      })
-      .addCase(getNextTeachers.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(getNextTeachers.fulfilled, (state, { payload }) => {
-        state.teachers = [...state.teachers, ...payload];
-        state.isLoading = false;
-      })
-      .addCase(getNextTeachers.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      }),
+      .addCase(getTeachers.fulfilled, getTeachersFulfilled)
+      .addCase(getNextTeachers.fulfilled, getNextTeachersFulfilled)
+      .addMatcher(
+        isAnyOf(getTeachers.pending, getNextTeachers.pending),
+        getTeachersPending
+      )
+      .addMatcher(
+        isAnyOf(getTeachers.rejected, getNextTeachers.rejected),
+        getTeachersRejected
+      ),
 });
 
 export const teachersReducer = teachersSlice.reducer;

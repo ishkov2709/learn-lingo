@@ -71,7 +71,7 @@ export default function BookForm({ id }: { id: string }) {
         >
           <Form>
             <b id="reason-radio-group" className={styles.question}>
-              What is your main reason for learning English?
+              What is your main reason for learning a language?
             </b>
             <div
               className={styles.radioBox}
@@ -162,7 +162,7 @@ export default function BookForm({ id }: { id: string }) {
               className={clsx(styles.btnSubmit, styles[currentTheme])}
               type="submit"
             >
-              Sign Up
+              Book
             </button>
           </Form>
         </Formik>

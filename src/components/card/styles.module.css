@@ -72,7 +72,7 @@
   margin-bottom: 32px;
 }
 
-.subtitleText:last-of-type {
+.subtitleText.last {
   margin-bottom: 16px;
 }
 
@@ -206,4 +206,39 @@
   50% {
     transform: scale(1);
   }
+}
+
+.experience {
+  margin-bottom: 32px;
+
+  font-weight: 400;
+}
+
+.reviewList {
+  font-weight: 500;
+}
+
+.reviewItem {
+  margin-bottom: 32px;
+}
+
+.reviewName {
+  margin-bottom: 2px;
+
+  color: var(--subtitle-card-color);
+
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.reviewRating {
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+
+  margin-bottom: 16px;
+
+  font-size: 14px;
+  line-height: 1;
 }

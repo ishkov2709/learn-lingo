@@ -23,8 +23,8 @@ export interface RegisterValues {
 
 export default function RegisterForm() {
   const [isShow, setShow] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
   const { userEmail, userError, userSuccess, currentTheme } = useAllSelectors();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (userSuccess && userEmail) {

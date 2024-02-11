@@ -4,6 +4,10 @@
   overflow-x: hidden;
 }
 
+.statSection {
+  padding-bottom: 36px;
+}
+
 .container {
   display: flex;
   gap: 24px;

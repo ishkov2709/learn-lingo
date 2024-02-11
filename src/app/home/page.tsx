@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { themeSwitcher } from "@/utils/themeSwitcher";
 import BtnLink from "@/components/btn-link";
 import yellow from "../../../public/images/hero/yellow.png";
 import green from "../../../public/images/hero/green.png";
@@ -10,6 +9,7 @@ import blue from "../../../public/images/hero/blue.png";
 import pink from "../../../public/images/hero/pink.png";
 import peach from "../../../public/images/hero/peach.png";
 import useAllSelectors from "@/utils/useAllSelectors";
+import { themeSwitcher } from "@/utils/themeSwitcher";
 
 const images = {
   yellow: yellow,
@@ -57,7 +57,7 @@ export default function Home() {
           />
         </div>
       </section>
-      <section>
+      <section className={styles.statSection}>
         <div className="container">
           <div className={`${styles.statsWrapper} ${styles[currentTheme]}`}>
             <ul className={styles.statList}>

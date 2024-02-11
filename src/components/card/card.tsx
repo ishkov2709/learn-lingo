@@ -51,7 +51,6 @@ const Card = ({
     rating,
     price_per_hour,
     reviews,
-    followers,
     favorites,
   },
 }: {

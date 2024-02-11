@@ -12,10 +12,18 @@ interface IProps {
   name: string;
   width: string;
   data: DataOption[];
+  saveValue: string | null;
   onChange: (newValue: unknown) => void;
 }
 
-const FilterSelector = ({ label, name, width, data, onChange }: IProps) => {
+const FilterSelector = ({
+  label,
+  name,
+  width,
+  data,
+  saveValue,
+  onChange,
+}: IProps) => {
   const ControlComponent = (props: ControlProps<DataOption, false>) => (
     <div style={{ width: width }}>
       <p
@@ -43,7 +51,7 @@ const FilterSelector = ({ label, name, width, data, onChange }: IProps) => {
         >,
       }}
       onChange={onChange}
-      defaultValue={data[0]}
+      defaultValue={data.find((opt) => opt.value === saveValue) ?? data[0]}
       styles={{
         control: (baseStyles) => ({
           ...baseStyles,

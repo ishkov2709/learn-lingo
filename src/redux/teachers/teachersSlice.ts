@@ -36,14 +36,14 @@ const teachersSlice = createSlice({
       state.filter.price = payload.value;
       state.pagination.page = 0;
     },
+    nextPage: (state) => {
+      state.pagination.page = state.pagination.page + 1;
+    },
     resetFilters: (state) => {
       state.filter.languages = "";
       state.filter.levels = "";
       state.filter.price = "";
       state.pagination.page = 0;
-    },
-    nextPage: (state) => {
-      state.pagination.page = state.pagination.page + 1;
     },
   },
   extraReducers: (builder) =>

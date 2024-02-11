@@ -4,9 +4,9 @@ export interface InitialState {
   teachers: TeacherProps[];
   favorites: TeacherProps[];
   filter: {
-    languages: string;
-    levels: string;
-    price: string;
+    languages: string | null;
+    levels: string | null;
+    price: string | null;
   };
   isLoading: boolean;
   error: string | null | unknown;
@@ -20,9 +20,9 @@ export const initialState: InitialState = {
   teachers: [],
   favorites: [],
   filter: {
-    languages: "",
-    levels: "",
-    price: "",
+    languages: null,
+    levels: null,
+    price: null,
   },
   isLoading: false,
   error: null,

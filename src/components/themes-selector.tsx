@@ -97,8 +97,8 @@ const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
 };
 
 const ThemesSelector = () => {
-  const dispatch = useAppDispatch();
   const { currentTheme } = useAllSelectors();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (typeof window !== "undefined") {

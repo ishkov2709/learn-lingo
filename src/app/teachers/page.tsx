@@ -6,6 +6,7 @@ import FilterSelector from "@/components/filter-selector";
 import PaginationBtn from "@/components/pagination-btn";
 import { useAppDispatch } from "@/redux/hooks";
 import {
+  resetFilters,
   setLanguage,
   setLevel,
   setPrice,
@@ -29,6 +30,10 @@ export default function Teachers() {
   const { teachers, filter, pagination, isLoading, error } = useAllSelectors();
   const dispatch = useAppDispatch();
 
+  // useEffect(() => {
+  //   dispatch(resetFilters());
+  // }, [dispatch]);
+
   useEffect(() => {
     dispatch(getTeachers());
   }, [dispatch, filter]);
@@ -51,6 +56,7 @@ export default function Teachers() {
                   name="language"
                   width="221px"
                   data={languageOptions}
+                  saveValue={filter.languages}
                   onChange={(newVal) =>
                     dispatch(setLanguage(newVal as DataOption))
                   }
@@ -60,6 +66,7 @@ export default function Teachers() {
                   name="level"
                   width="198px"
                   data={levelOptions}
+                  saveValue={filter.levels}
                   onChange={(newVal) =>
                     dispatch(setLevel(newVal as DataOption))
                   }
@@ -69,6 +76,7 @@ export default function Teachers() {
                   name="price"
                   width="124px"
                   data={priceOptions}
+                  saveValue={filter.price}
                   onChange={(newVal) =>
                     dispatch(setPrice(newVal as DataOption))
                   }

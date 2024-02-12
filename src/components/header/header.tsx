@@ -5,20 +5,23 @@ import logo from "../../../public/images/logo.svg";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import ThemesSelector from "../themes-selector";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { useAppDispatch } from "@/redux/hooks";
-import { currentUser, logoutUser } from "@/redux/user/thunk";
+import { currentUser } from "@/redux/user/thunk";
 import AuthBtns from "../auth-btns/auth-btns";
 import ProfileBtns from "../profile-btns";
 import useAllSelectors from "@/utils/useAllSelectors";
 import { setRefreshing } from "@/redux/user/userSlice";
 import { ThreeDots } from "react-loader-spinner";
 import { themeSwitcher } from "@/utils/themeSwitcher";
+import { IoMdMenu } from "react-icons/io";
+import Menu from "../menu/menu";
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const { userToken, isRefreshing, currentTheme } = useAllSelectors();
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const token = getCookie("user-token") ?? "";
@@ -27,7 +30,7 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <header>
+    <header className={styles.header}>
       <div className={`container ${styles.containerHeader}`}>
         <div>
           <span className={styles.logoWrapper}>
@@ -35,7 +38,18 @@ const Header = () => {
             <p>LearnLingo</p>
           </span>
         </div>
-        <ThemesSelector />
+
+        <button
+          className={styles.menuBtn}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <IoMdMenu size={28} />
+        </button>
+
+        <div className={styles.themeWrapper}>
+          <ThemesSelector />
+        </div>
+
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li>
@@ -51,7 +65,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="w-24">
+        <div className={styles.authBox}>
           {isRefreshing && userToken && <ProfileBtns />}
           {isRefreshing && !userToken && <AuthBtns />}
           {!isRefreshing && (
@@ -68,6 +82,8 @@ const Header = () => {
           )}
         </div>
       </div>
+
+      <Menu isOpen={isOpen} setOpen={setOpen} />
     </header>
   );
 };

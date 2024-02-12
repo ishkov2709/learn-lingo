@@ -64,11 +64,20 @@ button {
 
 .container {
   margin: 0 auto;
+
+  padding: 0 16px;
+}
+
+@media screen and (max-width: 390px) {
+  .container {
+    min-width: 320px;
+    max-width: 390px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .container {
-    max-width: 1440px;
+    width: 1440px;
 
     padding: 0 64px;
   }

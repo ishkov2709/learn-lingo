@@ -11,6 +11,7 @@ import clsx from "clsx";
 import BtnLink from "../btn-link";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToFavorites, deleteFromFavorites } from "@/redux/teachers/thunk";
+import { themeSwitcher } from "@/utils/themeSwitcher";
 
 export interface ReviewTeacher {
   comment: string;
@@ -160,7 +161,10 @@ const Card = ({
               onClick={handleDelete}
               disabled={isLoading}
             >
-              <FaHeart size={24} color="#121417" />
+              <FaHeart
+                size={24}
+                color={themeSwitcher(currentTheme).primaryColor}
+              />
             </button>
           )}
           {userId && !favorites?.includes(userId) && (

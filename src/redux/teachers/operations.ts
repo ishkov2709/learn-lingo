@@ -5,6 +5,16 @@ import { TeacherProps } from "@/components/card/card";
 export const getTeachersPending = (state: InitialState) => {
   state.isLoading = true;
   state.error = null;
+  state.pagination.page = 0;
+};
+
+export const getNextTeachersPending = (state: InitialState) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+export const updateTeachersPending = (state: InitialState) => {
+  state.isLoading = true;
 };
 
 export const getTeachersFulfilled = (
@@ -23,19 +33,6 @@ export const getNextTeachersFulfilled = (
   state.isLoading = false;
 };
 
-export const getTeachersRejected = (
-  state: InitialState,
-  { payload }: PayloadAction<string | null | unknown>
-) => {
-  state.isLoading = false;
-  state.error = payload;
-  state.teachers = [];
-};
-
-export const updateTeachersPending = (state: InitialState) => {
-  state.isLoading = true;
-};
-
 export const updateTeachersFulfilled = (
   state: InitialState,
   { payload }: PayloadAction<TeacherProps>
@@ -48,15 +45,32 @@ export const updateTeachersFulfilled = (
   ];
 };
 
-export const updateTeachersRejected = (state: InitialState) => {
-  state.isLoading = false;
-};
-
 export const allFavoritesFulfilled = (
   state: InitialState,
   { payload }: PayloadAction<TeacherProps[]>
 ) => {
   state.favorites = [...payload];
+  state.isLoading = false;
+};
+
+export const getTeachersRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | null | unknown>
+) => {
+  state.isLoading = false;
+  state.error = payload;
+  state.teachers = [];
+};
+
+export const getNextTeachersRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | null | unknown>
+) => {
+  state.isLoading = false;
+  state.error = payload;
+};
+
+export const updateTeachersRejected = (state: InitialState) => {
   state.isLoading = false;
 };
 

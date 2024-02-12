@@ -6,7 +6,6 @@ import FilterSelector from "@/components/filter-selector";
 import PaginationBtn from "@/components/pagination-btn";
 import { useAppDispatch } from "@/redux/hooks";
 import {
-  resetFilters,
   setLanguage,
   setLevel,
   setPrice,
@@ -20,7 +19,7 @@ import {
 } from "@/utils/reactSelectOptions";
 import useAllSelectors from "@/utils/useAllSelectors";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const FiltersForm = dynamic(() => import("../../components/filters-form"), {
   ssr: false,
@@ -29,18 +28,18 @@ const FiltersForm = dynamic(() => import("../../components/filters-form"), {
 export default function Teachers() {
   const { teachers, filter, pagination, isLoading, error } = useAllSelectors();
   const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(resetFilters());
-  // }, [dispatch]);
+  const [isLoadedPage, setLoadPage] = useState(false);
 
   useEffect(() => {
-    dispatch(getTeachers());
-  }, [dispatch, filter]);
+    if (!isLoadedPage || filter) {
+      setLoadPage(true);
+      dispatch(getTeachers());
+    }
+  }, [isLoadedPage, dispatch, filter]);
 
   useEffect(() => {
-    if (pagination.page > 0) dispatch(getNextTeachers());
-  }, [dispatch, pagination]);
+    if (pagination.page > 0 && isLoadedPage) dispatch(getNextTeachers());
+  }, [dispatch, pagination, isLoadedPage]);
 
   return (
     <>

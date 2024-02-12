@@ -21,7 +21,8 @@ export const getTeachers = createAsyncThunk(
         teachers: InitialState;
       };
       const { languages, levels, price } = teachers.filter;
-      const { perPage, page } = teachers.pagination;
+      const { perPage } = teachers.pagination;
+      const page = 0;
 
       const data = await fetch(
         `/api/teachers?${"perPage=" + perPage}${"&page=" + page}${

@@ -114,14 +114,14 @@ const ThemesSelector = () => {
   };
 
   return (
-    <div className="w-72 flex justify-center">
+    <>
       <Select
         defaultValue={colourOptions.find(({ value }) => value === currentTheme)}
         options={colourOptions}
         styles={colourStyles}
         onChange={handleChange}
       />
-    </div>
+    </>
   );
 };
 

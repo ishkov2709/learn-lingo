@@ -12,6 +12,8 @@ import {
   allFavoritesFulfilled,
   allFavoritesRejected,
   getNextTeachersFulfilled,
+  getNextTeachersPending,
+  getNextTeachersRejected,
   getTeachersFulfilled,
   getTeachersPending,
   getTeachersRejected,
@@ -39,30 +41,19 @@ const teachersSlice = createSlice({
     nextPage: (state) => {
       state.pagination.page = state.pagination.page + 1;
     },
-    resetFilters: (state) => {
-      state.filter.languages = "";
-      state.filter.levels = "";
-      state.filter.price = "";
-      state.pagination.page = 0;
-    },
   },
   extraReducers: (builder) =>
     builder
       .addCase(getTeachers.fulfilled, getTeachersFulfilled)
+      .addCase(getTeachers.rejected, getTeachersRejected)
+      .addCase(getNextTeachers.pending, getNextTeachersPending)
       .addCase(getNextTeachers.fulfilled, getNextTeachersFulfilled)
+      .addCase(getNextTeachers.rejected, getNextTeachersRejected)
       .addCase(getFavorites.fulfilled, allFavoritesFulfilled)
       .addCase(getFavorites.rejected, allFavoritesRejected)
       .addMatcher(
-        isAnyOf(
-          getTeachers.pending,
-          getNextTeachers.pending,
-          getFavorites.pending
-        ),
+        isAnyOf(getTeachers.pending, getFavorites.pending),
         getTeachersPending
-      )
-      .addMatcher(
-        isAnyOf(getTeachers.rejected, getNextTeachers.rejected),
-        getTeachersRejected
       )
       .addMatcher(
         isAnyOf(
@@ -92,5 +83,5 @@ const teachersSlice = createSlice({
 
 export const teachersReducer = teachersSlice.reducer;
 
-export const { setLanguage, setLevel, setPrice, resetFilters, nextPage } =
+export const { setLanguage, setLevel, setPrice, nextPage } =
   teachersSlice.actions;

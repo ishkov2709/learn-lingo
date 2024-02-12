@@ -1,16 +1,14 @@
 import clsx from "clsx";
 import styles from "./styles.module.css";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { nextPage } from "@/redux/teachers/teachersSlice";
+import useAllSelectors from "@/utils/useAllSelectors";
 
 export default function PaginationBtn() {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
-  const teathers = useAppSelector((state) => state.teachers.teachers);
-  const isLoading = useAppSelector((state) => state.teachers.isLoading);
-  const error = useAppSelector((state) => state.teachers.error);
+  const { currentTheme, teachers, isLoading, error } = useAllSelectors();
   const dispatch = useAppDispatch();
 
-  if (teathers.length === 0 || teathers.length % 3 !== 0 || isLoading || error)
+  if (teachers.length === 0 || teachers.length % 3 !== 0 || isLoading || error)
     return null;
 
   const handleClick = () => {

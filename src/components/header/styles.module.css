@@ -1,7 +1,26 @@
+.header {
+  position: relative;
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 .containerHeader {
+  position: relative;
+  z-index: 100;
+
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
+
+  background-color: var(--primary-white-color);
+}
+
+@media screen and (min-width: 768px) {
+  .containerHeader {
+    justify-content: space-evenly;
+    align-items: center;
+  }
 }
 
 .logoWrapper {
@@ -14,6 +33,16 @@
   font-weight: 500;
   font-size: 20px;
   letter-spacing: -0.02em;
+}
+
+.nav {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    display: block;
+  }
 }
 
 .navList {
@@ -33,4 +62,34 @@
   color: var(--secondary-black-color);
 }
 
+.authBox {
+  display: none;
+}
 
+@media screen and (min-width: 768px) {
+  .authBox {
+    display: block;
+
+    width: 96px;
+  }
+}
+
+.menuBtn {
+  padding: 16px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .menuBtn {
+    display: none;
+  }
+}
+
+.themeWrapper {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .themeWrapper {
+    display: block;
+  }
+}

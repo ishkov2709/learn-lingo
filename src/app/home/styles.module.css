@@ -1,4 +1,6 @@
 .heroSection {
+  padding-top: 24px;
+
   margin-bottom: 24px;
 
   overflow-x: hidden;
@@ -10,25 +12,52 @@
 
 .container {
   display: flex;
+  flex-direction: column-reverse;
   gap: 24px;
 }
 
-.aboutWrapper {
-  width: 100%;
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}
 
-  padding: 98px 64px;
+.aboutWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 16px;
 
   background-color: var(--gray-bg-color);
 
   border-radius: 30px;
 }
 
+@media screen and (min-width: 768px) {
+  .aboutWrapper {
+    display: block;
+
+    width: 100%;
+
+    padding: 98px 64px;
+  }
+}
+
 .title {
-  font-size: 48px;
+  font-size: 24px;
   font-weight: 400;
   letter-spacing: -0.02em;
 
-  margin-bottom: 32px;
+  margin-bottom: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 48px;
+
+    margin-bottom: 32px;
+  }
 }
 
 .accent {
@@ -36,18 +65,34 @@
 }
 
 .text {
-  width: 471px;
+  font-size: 12px;
 
-  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
 
-  margin-bottom: 64px;
+@media screen and (min-width: 768px) {
+  .text {
+    width: 471px;
+
+    font-size: 16px;
+
+    letter-spacing: -0.02em;
+
+    margin-bottom: 64px;
+  }
 }
 
 .statsWrapper {
   position: relative;
-  padding: 40px 0;
+  padding: 40px 16px;
 
   border-radius: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .statsWrapper {
+    padding: 40px 0;
+  }
 }
 
 .yellow {
@@ -72,16 +117,39 @@
 
 .statList {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: start;
 
-  letter-spacing: -0.02em;
+  width: 220px;
+
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .statList {
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: auto;
+
+    margin: 0;
+
+    letter-spacing: -0.02em;
+  }
 }
 
 .statItem {
   display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
+  flex-direction: row-reverse;
+  gap: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .statItem {
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 }
 
 .statCount {

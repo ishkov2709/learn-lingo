@@ -11,12 +11,13 @@ import { redirect, usePathname } from "next/navigation";
 export interface PageProps {}
 
 export default function ProfileBtns() {
-  const dispatch = useAppDispatch();
   const { currentTheme } = useAllSelectors();
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
   return (
     <ul className={styles.list}>
       <li>

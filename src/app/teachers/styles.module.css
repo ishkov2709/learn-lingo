@@ -1,0 +1,14 @@
+.main {
+  background-color: #f8f8f8;
+  min-height: calc(100% - 88px);
+}
+
+.section {
+  padding: 32px 0 64px 0;
+}
+
+.filterBox {
+  min-height: 80px;
+
+  margin-bottom: 32px;
+}

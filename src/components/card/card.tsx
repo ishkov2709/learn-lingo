@@ -162,7 +162,7 @@ const Card = ({
               disabled={isLoading}
             >
               <FaHeart
-                size={24}
+                size={20}
                 color={themeSwitcher(currentTheme).primaryColor}
               />
             </button>
@@ -174,7 +174,7 @@ const Card = ({
               onClick={handleAdd}
               disabled={isLoading}
             >
-              <FaRegHeart size={24} color="#121417" />
+              <FaRegHeart size={20} color="#121417" />
             </button>
           )}
         </div>

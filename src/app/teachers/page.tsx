@@ -19,11 +19,15 @@ import {
 } from "@/utils/reactSelectOptions";
 import useAllSelectors from "@/utils/useAllSelectors";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
+import styles from "./styles.module.css";
 
-const FiltersForm = dynamic(() => import("../../components/filters-form"), {
-  ssr: false,
-});
+const FiltersForm = dynamic(
+  () => import("../../components/filters-form/filters-form"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Teachers() {
   const { teachers, filter, pagination, isLoading, error } = useAllSelectors();
@@ -43,12 +47,10 @@ export default function Teachers() {
 
   return (
     <>
-      <main
-        style={{ backgroundColor: "#F8F8F8", minHeight: "calc(100% - 88px)" }}
-      >
-        <section className="pt-8 pb-16">
+      <main className={styles.main}>
+        <section className={styles.section}>
           <div className="container">
-            <div className="min-h-20 mb-8">
+            <div className={styles.filterBox}>
               <FiltersForm>
                 <FilterSelector
                   label="Languages"

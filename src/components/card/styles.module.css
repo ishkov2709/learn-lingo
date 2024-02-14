@@ -1,7 +1,5 @@
 .cardItem {
-  display: flex;
-  gap: 48px;
-
+  position: relative;
   padding: 24px;
 
   background-color: var(--primary-white-color);
@@ -11,6 +9,25 @@
   line-height: 1.5;
 
   border-radius: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .cardItem {
+    position: static;
+
+    display: flex;
+    gap: 48px;
+
+    padding: 24px;
+
+    background-color: var(--primary-white-color);
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+
+    border-radius: 24px;
+  }
 }
 
 .avatar {
@@ -42,17 +59,27 @@
 }
 
 .rightSideWrapper {
-  position: relative;
-
   width: 100%;
 }
 
-.levelList {
-  display: flex;
-  gap: 8px;
+@media screen and (min-width: 768px) {
+  .rightSideWrapper {
+    position: relative;
+  }
+}
 
-  font-size: 14px;
-  font-weight: 500;
+.levelList {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .levelList {
+    display: flex;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 .levelItem {
@@ -158,18 +185,41 @@
 
 .extaInfoWrapper {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 16px;
+  right: 16px;
 
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 8px;
 }
 
-.extraText {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+@media screen and (min-width: 768px) {
+  .extaInfoWrapper {
+    top: 0;
+    right: 0;
+
+    gap: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .extraText {
+    display: inline-flex;
+
+    font-size: 12px;
+  }
+
+  .extraText:nth-child(-n + 2) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .extraText {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .price {
@@ -184,8 +234,6 @@
   background: transparent;
 
   border: none;
-
-  transition: transform 250ms ease-in-out;
 }
 
 .favBtn:hover,

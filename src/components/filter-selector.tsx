@@ -42,6 +42,7 @@ const FilterSelector = ({
 
   return (
     <Select
+      isSearchable={false}
       className="basic-single"
       name={name}
       options={data}

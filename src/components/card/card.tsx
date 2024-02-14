@@ -136,7 +136,7 @@ const Card = ({
         </ul>
 
         {userToken && (
-          <BtnLink href={`/teachers/${_id}`} className="mt-8">
+          <BtnLink href={`/teachers/${_id}`} className={styles.bookLink}>
             Book trial lesson
           </BtnLink>
         )}

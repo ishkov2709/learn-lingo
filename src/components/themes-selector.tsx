@@ -120,6 +120,7 @@ const ThemesSelector = () => {
         options={colourOptions}
         styles={colourStyles}
         onChange={handleChange}
+        isSearchable={false}
       />
     </>
   );

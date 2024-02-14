@@ -125,11 +125,10 @@
 }
 
 .moreBtn {
-  display: inline-block;
+  display: block;
 
   position: relative;
 
-  margin: 0 0 32px 0;
   padding: 0;
 
   background: transparent;
@@ -140,6 +139,14 @@
   line-height: 1.5;
 
   border: none;
+}
+
+@media screen and (min-width: 768px) {
+  .moreBtn {
+    display: inline-block;
+
+    margin-bottom: 32px;
+  }
 }
 
 .moreBtn::before {
@@ -189,8 +196,11 @@
   right: 16px;
 
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+
+  width: 125px;
 }
 
 @media screen and (min-width: 768px) {
@@ -198,7 +208,10 @@
     top: 0;
     right: 0;
 
+    flex-wrap: nowrap;
     gap: 32px;
+
+    width: auto;
   }
 }
 
@@ -211,6 +224,10 @@
 
   .extraText:nth-child(-n + 2) {
     display: none;
+  }
+
+  .extraText:nth-child(3) {
+    order: 2;
   }
 }
 
@@ -278,4 +295,23 @@
 
   font-size: 14px;
   line-height: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .bookLink {
+    display: block;
+
+    width: 100%;
+    max-width: 267px;
+
+    margin: 32px auto 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .bookLink {
+    display: inline-block;
+
+    margin: 32px 0 0 0;
+  }
 }

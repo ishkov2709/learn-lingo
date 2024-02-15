@@ -106,7 +106,7 @@ export default function Teachers() {
                 </FiltersForm>
               </div>
             )}
-            <ul className="flex flex-col gap-8">
+            <ul className={styles.teachersList}>
               {teachers.length > 0 &&
                 teachers.map((teacher: TeacherProps) => (
                   <Card key={teacher._id} data={teacher} />

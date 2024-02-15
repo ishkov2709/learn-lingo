@@ -96,7 +96,7 @@ const colourStyles: StylesConfig<unknown, boolean, GroupBase<unknown>> = {
   }),
 };
 
-const ThemesSelector = () => {
+const ThemesSelector = ({ isSearchable }: { isSearchable: boolean }) => {
   const { currentTheme } = useAllSelectors();
   const dispatch = useAppDispatch();
 
@@ -120,7 +120,7 @@ const ThemesSelector = () => {
         options={colourOptions}
         styles={colourStyles}
         onChange={handleChange}
-        isSearchable={false}
+        isSearchable={isSearchable}
       />
     </>
   );

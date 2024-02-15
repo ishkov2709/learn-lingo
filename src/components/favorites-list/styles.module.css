@@ -1,0 +1,9 @@
+.emptyText {
+  font-size: 30px;
+}
+
+.teachersList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

@@ -1,7 +1,25 @@
 .formWrapper {
-  width: 472px;
+  width: 260px;
+  height: 600px;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .formWrapper::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .formWrapper {
+    width: 472px;
+
+    overflow: auto;
+  }
 }
 
 .title {
@@ -164,15 +182,23 @@
 }
 
 .field {
-  width: 472px;
+  width: 240px;
 
-  padding: 16px 18px;
+  padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid #1214171a;
 
   outline: none;
 
   transition: box-shadow 250ms ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+  .field {
+    width: 472px;
+
+    padding: 16px 18px;
+  }
 }
 
 .field:focus {

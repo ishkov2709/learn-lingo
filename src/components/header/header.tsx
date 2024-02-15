@@ -47,7 +47,7 @@ const Header = () => {
         </button>
 
         <div className={styles.themeWrapper}>
-          <ThemesSelector />
+          <ThemesSelector isSearchable={true} />
         </div>
 
         <nav className={styles.nav}>

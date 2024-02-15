@@ -6,7 +6,7 @@
 
 .containerHeader {
   position: relative;
-  z-index: 1000;
+  z-index: 10;
 
   display: flex;
   flex-wrap: wrap;

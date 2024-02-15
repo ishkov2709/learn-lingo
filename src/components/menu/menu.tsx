@@ -71,7 +71,7 @@ export default function Menu({ isOpen, setOpen }: MenuProps) {
         )}
       </ul>
 
-      <ThemesSelector />
+      <ThemesSelector isSearchable={false} />
     </div>
   );
 }

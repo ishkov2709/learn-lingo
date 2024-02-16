@@ -63,7 +63,7 @@ export default function Menu({ isOpen, setOpen }: MenuProps) {
               <Link href={"/favorites"}>Favorites</Link>
             </li>
             <li>
-              <button type="button" onClick={handleLogout}>
+                <button type="button" onClick={handleLogout} className={styles.logoutBtn}>
                 Logout
               </button>
             </li>

@@ -22,7 +22,7 @@
   transition: top 250ms ease-out;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .menu {
     display: none;
   }
@@ -40,6 +40,10 @@
   position: absolute;
   top: 16px;
   right: 16px;
+
+  background: transparent;
+
+  border: none;
 }
 
 .navList {
@@ -52,4 +56,14 @@
   font-size: 18px;
   line-height: 1.2;
   font-weight: 500;
+}
+
+.logoutBtn {
+  background: transparent;
+
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  border: none;
 }

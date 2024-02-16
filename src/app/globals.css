@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
   --primary-black-color: #121417;
   --secondary-black-color: #121417b3;
@@ -76,10 +72,24 @@ button {
   }
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .container {
     width: 1440px;
 
     padding: 0 64px;
   }
+}
+
+.loadingWrapper {
+  display: flex;
+  justify-content: center;
+
+  padding-top: 24px;
+  padding-bottom: 24px;
 }

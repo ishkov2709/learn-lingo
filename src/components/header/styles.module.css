@@ -8,8 +8,9 @@
   position: relative;
   z-index: 10;
 
+  width: 100%;
+
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 
@@ -17,6 +18,13 @@
 }
 
 @media screen and (min-width: 768px) {
+  .containerHeader {
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1440px) {
   .containerHeader {
     justify-content: space-evenly;
     align-items: center;
@@ -39,7 +47,7 @@
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .nav {
     display: block;
   }
@@ -66,7 +74,7 @@
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .authBox {
     display: block;
 
@@ -75,10 +83,14 @@
 }
 
 .menuBtn {
+  background: transparent;
+
+  border: none;
+
   padding: 16px 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .menuBtn {
     display: none;
   }
@@ -88,7 +100,7 @@
   display: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1440px) {
   .themeWrapper {
     display: block;
   }

@@ -16,6 +16,14 @@
   align-items: center;
   gap: 8px;
 
+  background: transparent;
+
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  border: none;
+
   transition: gap 250ms ease-in-out, color 250ms ease-in-out;
 }
 

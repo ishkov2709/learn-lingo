@@ -54,6 +54,7 @@ export default function Home() {
             width={568}
             height={530}
             priority
+            className={styles.image}
           />
         </div>
       </section>

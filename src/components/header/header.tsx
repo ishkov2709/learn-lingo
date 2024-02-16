@@ -17,6 +17,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { themeSwitcher } from "@/utils/themeSwitcher";
 import { IoMdMenu } from "react-icons/io";
 import Menu from "../menu/menu";
+import clsx from "clsx";
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.containerHeader}`}>
+      <div className={clsx("container", styles.containerHeader)}>
         <div>
           <span className={styles.logoWrapper}>
             <Image src={logo} alt="flag-ukraine" width={28} height={28} />

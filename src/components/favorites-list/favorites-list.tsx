@@ -1,38 +1,42 @@
 "use client";
 
 import useAllSelectors from "@/utils/useAllSelectors";
-import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import Card from "../card";
-import { getFavorites } from "@/redux/teachers/thunk";
+import { getFavorites, getTeachers } from "@/redux/teachers/thunk";
 import { useAppDispatch } from "@/redux/hooks";
 import styles from "./styles.module.css";
 
 export default function FavoritesList() {
-  const { teachers, favorites, isLoading, error, userToken } =
+  const { teachers, favorites, isLoading, isRefreshing, userToken } =
     useAllSelectors();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!userToken) redirect("/");
-  });
+    dispatch(getTeachers());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (teachers) {
+    if (teachers && userToken) {
       dispatch(getFavorites());
     }
-  }, [teachers, dispatch]);
+  }, [teachers, userToken, dispatch]);
 
-  if (favorites.length === 0 && !isLoading && !error)
-    return (
-      <p className={styles.emptyText}>List of favorite teachers is empty 😭</p>
-    );
-  if (favorites.length > 0)
-    return (
-      <ul className={styles.teachersList}>
-        {favorites.map((teacher) => (
-          <Card key={teacher._id} data={teacher} />
-        ))}{" "}
-      </ul>
-    );
+  return (
+    <>
+      {favorites.length === 0 && !isLoading && teachers && isRefreshing && (
+        <p className={styles.emptyText}>
+          List of favorite teachers is empty 😭
+        </p>
+      )}
+
+      {favorites.length > 0 && (
+        <ul className={styles.teachersList}>
+          {favorites.map((teacher) => (
+            <Card key={teacher._id} data={teacher} />
+          ))}{" "}
+        </ul>
+      )}
+    </>
+  );
 }

@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { currentUser, loginUser, logoutUser, registerUser } from "./thunk";
 import { initialState } from "./initialState";
 import {
+  currentUserRejected,
   loginUserFulfilled,
   logoutUserFulfilled,
   registerUserFulfilled,
@@ -25,6 +26,7 @@ const userSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, registerUserFulfilled)
       .addCase(logoutUser.fulfilled, logoutUserFulfilled)
+      .addCase(currentUser.rejected, currentUserRejected)
       .addMatcher(
         isAnyOf(registerUser.pending, loginUser.pending, currentUser.pending),
         userPending

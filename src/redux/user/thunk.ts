@@ -54,15 +54,25 @@ export const loginUser = createAsyncThunk(
 
 export const currentUser = createAsyncThunk(
   "user/current",
-  async (token: string) => {
-    const data = await fetch("/api/users/current", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+  async (token: string, thunkAPI) => {
+    try {
+      const data = await fetch("/api/users/current", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
 
-    return await data.json();
+      const res = await data.json();
+      if (data.status !== 200) throw new Error(res.message);
+
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const { message } = error;
+        return thunkAPI.rejectWithValue(message);
+      }
+    }
   }
 );
 

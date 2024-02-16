@@ -33,14 +33,6 @@ export const registerUserFulfilled = (
   state.email = payload.email;
 };
 
-export const userRejected = (
-  state: InitialState,
-  { payload }: PayloadAction<string | null | unknown>
-) => {
-  state.error = payload;
-  state.isLoading = false;
-};
-
 export const loginUserFulfilled = (
   state: InitialState,
   { payload }: PayloadAction<LoginResponse>
@@ -61,5 +53,17 @@ export const logoutUserFulfilled = (state: InitialState) => {
   state.email = "";
   state.name = null;
 
+  deleteCookie("user-token");
+};
+
+export const userRejected = (
+  state: InitialState,
+  { payload }: PayloadAction<string | null | unknown>
+) => {
+  state.error = payload;
+  state.isLoading = false;
+};
+
+export const currentUserRejected = () => {
   deleteCookie("user-token");
 };

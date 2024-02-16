@@ -12,19 +12,26 @@ export async function GET(req: NextRequest) {
 
   if (bearer !== "Bearer") return HttpError("Not authorized", 401);
 
-  await connect();
+  try {
+    await connect();
 
-  const { id } = (await jwt.verify(token, SECRET_KEY)) as JwtPayload;
-  const user = await User.findById(id);
+    const { id } = (await jwt.verify(token, SECRET_KEY)) as JwtPayload;
+    const user = await User.findById(id);
 
-  const userData = {
-    token: user.token,
-    user: {
-      id,
-      name: user.name,
-      email: user.email,
-    },
-  };
+    const userData = {
+      token: user.token,
+      user: {
+        id,
+        name: user.name,
+        email: user.email,
+      },
+    };
 
-  return NextResponse.json({ ...userData }, { status: 200 });
+    return NextResponse.json({ ...userData }, { status: 200 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      const { message } = error;
+      return NextResponse.json({ message }, { status: 401 });
+    }
+  }
 }

@@ -12,6 +12,7 @@ import BtnLink from "../btn-link";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToFavorites, deleteFromFavorites } from "@/redux/teachers/thunk";
 import { themeSwitcher } from "@/utils/themeSwitcher";
+import { redirect, usePathname } from "next/navigation";
 
 export interface ReviewTeacher {
   comment: string;
@@ -60,6 +61,7 @@ const Card = ({
   const { currentTheme, isLoading, userToken, userId } = useAllSelectors();
   const [isShow, setShow] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const pathname = usePathname();
 
   const handleAdd = () => {
     dispatch(addToFavorites(_id));
@@ -67,6 +69,10 @@ const Card = ({
 
   const handleDelete = () => {
     dispatch(deleteFromFavorites(_id));
+  };
+
+  const handleBook = () => {
+    if (pathname.includes("favorites")) redirect("/teachers");
   };
 
   return (
@@ -136,7 +142,11 @@ const Card = ({
         </ul>
 
         {userToken && (
-          <BtnLink href={`/teachers/${_id}`} className={styles.bookLink}>
+          <BtnLink
+            href={`/teachers/${_id}`}
+            className={styles.bookLink}
+            handler={handleBook}
+          >
             Book trial lesson
           </BtnLink>
         )}

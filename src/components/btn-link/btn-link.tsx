@@ -7,10 +7,11 @@ import clsx from "clsx";
 interface IProps {
   href: string;
   className?: string;
+  handler?: () => void;
   children: ReactNode;
 }
 
-const BtnLink = ({ href, className, children }: IProps) => {
+const BtnLink = ({ href, className, handler = () => {}, children }: IProps) => {
   const currentTheme = useAppSelector((state) => state.themes.currentTheme);
 
   return (
@@ -18,6 +19,7 @@ const BtnLink = ({ href, className, children }: IProps) => {
       className={clsx(styles.btnLink, styles[currentTheme], `${className}`)}
       href={href}
       scroll={false}
+      onClick={handler}
     >
       {children}
     </Link>

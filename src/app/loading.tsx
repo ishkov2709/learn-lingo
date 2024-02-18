@@ -4,7 +4,7 @@ import { TailSpin } from "react-loader-spinner";
 
 export default function Page() {
   return (
-    <main className="loadingWrapper">
+    <main className="centeredWrapper">
       <TailSpin
         visible={true}
         height="80"

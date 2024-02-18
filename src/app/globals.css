@@ -86,7 +86,7 @@ button {
   }
 }
 
-.loadingWrapper {
+.centeredWrapper {
   display: flex;
   justify-content: center;
 

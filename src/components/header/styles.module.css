@@ -17,13 +17,6 @@
   background-color: var(--primary-white-color);
 }
 
-@media screen and (min-width: 768px) {
-  .containerHeader {
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
 @media screen and (min-width: 1440px) {
   .containerHeader {
     justify-content: space-evenly;

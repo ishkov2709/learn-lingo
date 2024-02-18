@@ -1,12 +1,12 @@
 .formWrapper {
-  width: 260px;
-  height: 600px;
-
   margin: 0 auto;
 }
 
 @media screen and (max-width: 768px) {
   .formWrapper {
+    width: 260px;
+    height: 600px;
+
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -279,4 +279,19 @@
   color: #f62c2c;
 
   font-size: 14px;
+}
+
+.arrowDown {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .arrowDown {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: block;
+  }
 }

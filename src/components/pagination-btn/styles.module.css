@@ -19,6 +19,8 @@
   border-radius: 12px;
 
   transition: background-color 250ms ease-in-out;
+
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .btn.yellow {

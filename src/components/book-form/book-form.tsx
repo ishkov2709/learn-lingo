@@ -7,12 +7,13 @@ import Image from "next/image";
 import { TeacherProps } from "../card/card";
 import BookRadios, { Picked } from "../book-radios/book-radios";
 import useAllSelectors from "@/utils/useAllSelectors";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getTeacher } from "@/utils/getTeacher";
 import { bookLesson } from "@/redux/teachers/thunk";
 import { useAppDispatch } from "@/redux/hooks";
 import { bookSchema } from "@/utils/validationSchemas";
 import { notifyLesson } from "@/utils/notify";
+import { FaArrowCircleDown } from "react-icons/fa";
 
 export interface BookValues {
   picked: Picked | "";
@@ -25,6 +26,14 @@ export default function BookForm({ id }: { id: string }) {
   const { currentTheme } = useAllSelectors();
   const [teacher, setTeacher] = useState<TeacherProps | null>(null);
   const dispatch = useAppDispatch();
+  const formRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.addEventListener("scroll", () => setVisible(false));
+    }
+  }, [formRef]);
 
   useEffect(() => {
     (async () => {
@@ -34,7 +43,7 @@ export default function BookForm({ id }: { id: string }) {
   }, [id]);
 
   return (
-    <div className={styles.formWrapper}>
+    <div className={styles.formWrapper} ref={formRef}>
       <h1 className={styles.title}>Book trial lesson</h1>
       <p className={styles.text}>
         Our experienced tutor will assess your current language level, discuss
@@ -60,6 +69,10 @@ export default function BookForm({ id }: { id: string }) {
           </>
         )}
       </div>
+
+      {isVisible && (
+        <FaArrowCircleDown size={32} className={styles.arrowDown} />
+      )}
 
       <Formik
         initialValues={{

@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="./public/images/demo/logo.png">
+  <a href="/public/images/demo/logo.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -46,7 +46,7 @@ The LearnLingo project is a convenient and efficient tool for those looking to m
 ### Built With
 
 - ![Static Badge](https://img.shields.io/badge/TYPESCRIPT-3178C6?style=flat-square&logo=TYPESCRIPT&labelColor=FFFFFF)
-- [![Next][Next.js]][Next-url]
+- ![Static Badge](https://img.shields.io/badge/NEXT.JS-%23000000?style=for-the-badge)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,8 +72,8 @@ The LearnLingo project is a convenient and efficient tool for those looking to m
 
 ## Usage
 
-[![Product Name Screen Shot][product-screenshot]](./public/images/demo/home.png)
-[![Product Name Screen Shot][product-screenshot]](./public/images/demo/list.png)
+[![Product Name Screen Shot][product-screenshot]](/public/images/demo/home.png)
+[![Product Name Screen Shot][product-screenshot]](/public/images/demo/list.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -91,6 +91,6 @@ Use this space to list resources you find helpful and would like to give credit 
 
 - ![Static Badge](https://img.shields.io/badge/MONGODB-47A248?style=flat-square&logo=MONGODB&labelColor=FFF)
 - ![Static Badge](https://img.shields.io/badge/REDUX-764ABC?style=flat-square&logo=REDUX&logoColor=764ABC&labelColor=FFF)
-- [React Icons](https://react-icons.github.io/react-icons/search)
+- ![Static Badge](https://img.shields.io/badge/REACT--ICONS-%23ff0000?style=for-the-badge&labelColor=%23ff0000)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

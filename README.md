@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="public/images/demo/logo.png">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="">
+    <img src="./public/images/demo/logo.png" alt="Logo" width="80" >
   </a>
 
   <h3 align="center">LearnLingo</h3>
@@ -72,8 +72,8 @@ The LearnLingo project is a convenient and efficient tool for those looking to m
 
 ## Usage
 
-[![Product Name Screen Shot][product-screenshot]](public/images/demo/home.png)
-[![Product Name Screen Shot][product-screenshot]](public/images/demo/list.png)
+![Product Name Screen Shot][product-screenshot](./public/images/demo/home.png)
+![Product Name Screen Shot][product-screenshot](./public/images/demo/list.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

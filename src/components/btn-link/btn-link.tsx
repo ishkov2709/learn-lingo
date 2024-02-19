@@ -1,8 +1,8 @@
-import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import { ReactNode } from "react";
 import styles from "./styles.module.css";
 import clsx from "clsx";
+import useAllSelectors from "@/utils/useAllSelectors";
 
 interface IProps {
   href: string;
@@ -11,8 +11,13 @@ interface IProps {
   children: ReactNode;
 }
 
-const BtnLink = ({ href, className, handler = () => {}, children }: IProps) => {
-  const currentTheme = useAppSelector((state) => state.themes.currentTheme);
+const BtnLink = ({
+  href,
+  className = "",
+  handler = () => {},
+  children,
+}: IProps) => {
+  const { currentTheme } = useAllSelectors();
 
   return (
     <Link

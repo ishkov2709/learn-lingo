@@ -52,12 +52,11 @@ The LearnLingo project is a convenient and efficient tool for those looking to m
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/ishkov2709/learn-lingo.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    yarn
    ```
@@ -86,8 +85,6 @@ Project Link: [https://github.com/ishkov2709/learn-lingo](https://github.com/ish
 <!-- ACKNOWLEDGMENTS -->
 
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 - ![Static Badge](https://img.shields.io/badge/MONGODB-47A248?style=flat-square&logo=MONGODB&labelColor=FFF)
 - ![Static Badge](https://img.shields.io/badge/REDUX-764ABC?style=flat-square&logo=REDUX&logoColor=764ABC&labelColor=FFF)
